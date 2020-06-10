@@ -9,7 +9,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.multidex.MultiDex;
 
 import android.app.ActionBar;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -21,7 +23,9 @@ import android.widget.Toolbar;
 
 import com.google.android.material.navigation.NavigationView;
 
+import cd.digitalEdge.vst.Tools.Preferences;
 import cd.digitalEdge.vst.Views.Lists.List_clients;
+import cd.digitalEdge.vst.Views.Signin.Login;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     Context context = this;
@@ -39,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportActionBar().setElevation(0);
         getSupportActionBar().show();
 
+        if (Preferences.getUserPreferences(context, "logged").equals("")){}
         INIT_COMPONENT();
     }
 
@@ -101,6 +106,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()) {
             case R.id.profil :
                 drawer.openDrawer(GravityCompat.END );
+                break;
+            case R.id.logout :
+
+                new AlertDialog.Builder(context)
+                        .setTitle("Exit")
+                        .setMessage("Voulez-vous vraiment quitter l'application ?")
+                        .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent i  = new Intent(context, Login.class);
+                                startActivity(i);
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("Non", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }).show();
+
                 break;
         }
 

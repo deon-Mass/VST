@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Views.Lists.List_clients"></activity>
+        <activity android:name=".Views.Signin.Login"></activity>
+        <activity android:name=".Views.Lists.List_clients" />
         <activity android:name=".Views.Blanks.Add_vente" />
         <activity android:name=".Views.Blanks.Add_client" />
         <activity android:name=".MainActivity">

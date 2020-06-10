@@ -7,9 +7,16 @@
     android:background="@color/background"
     tools:context=".Views.Lists.List_clients">
 
-    <ListView
-        android:id="@+id/clients_list"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:id="@+id/swiper">
+
+        <ListView
+            android:id="@+id/clients_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </LinearLayout>

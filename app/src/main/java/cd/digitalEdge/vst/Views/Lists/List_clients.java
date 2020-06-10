@@ -3,13 +3,16 @@ package cd.digitalEdge.vst.Views.Lists;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
+import cd.digitalEdge.vst.Adaptors.Adaptor_Client_list;
 import cd.digitalEdge.vst.MainActivity;
 import cd.digitalEdge.vst.R;
 import cd.digitalEdge.vst.Views.Blanks.Add_client;
@@ -17,17 +20,34 @@ import cd.digitalEdge.vst.Views.Blanks.Add_client;
 public class List_clients extends AppCompatActivity {
 
     Context context = this;
+    Adaptor_Client_list adapter;
+    ListView clients_list;
+    SwipeRefreshLayout swiper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_clients);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        INIT_COMPONENT();
+        gettDatas();
+    }
+
+    private void INIT_COMPONENT() {
+        clients_list = findViewById(R.id.clients_list);
+        swiper = findViewById(R.id.swiper);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                gettDatas();
+            }
+        });
     }
 
     @Override
@@ -36,7 +56,6 @@ public class List_clients extends AppCompatActivity {
         startActivity(i);
         finish();
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -64,6 +83,16 @@ public class List_clients extends AppCompatActivity {
         }
 
         return true;
+    }
+
+
+
+    // TODO METHOD
+    private void gettDatas(){
+        swiper.setRefreshing(true);
+        adapter = new Adaptor_Client_list(context);
+        clients_list.setAdapter(adapter);
+        swiper.setRefreshing(false);
     }
 
 }
