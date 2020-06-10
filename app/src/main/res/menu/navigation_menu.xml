@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/titre1"
+            android:icon="@drawable/ic_client_white"
+            android:title="Les clients"/>
+        <item
+            android:icon="@drawable/ic_product_white"
+            android:title="Les produits"/>
+
+        <item
+            android:icon="@drawable/ic_user_white"
+            android:title="Mon profil"/>
+        <item
+            android:icon="@drawable/ic_settings_white"
+            android:title="Paramettres"/>
+    </group>
+
+
+</menu>

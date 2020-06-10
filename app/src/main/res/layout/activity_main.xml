@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/drawer"
+    android:background="@color/background"
+    tools:context=".MainActivity">
+
+    <include
+        layout="@layout/content_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.google.android.material.navigation.NavigationView
+        app:itemTextAppearance="@style/NavigationViewStyle"
+        android:background="@color/dark"
+        android:layout_gravity="start"
+        android:id="@+id/navigationView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        app:itemTextColor="@color/white"
+        app:itemIconSize="25dp"
+        app:itemIconTint="@color/colorPrimary"
+        app:itemIconPadding="@dimen/bbn_badge_size"
+        app:menu="@menu/navigation_menu"
+        app:headerLayout="@layout/drawer_navigation_menu">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:clickable="true"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/footer_item_1"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center"
+                android:textSize="12dp"
+                android:textColor="@color/green"
+                android:text="All right reserved" />
+        </LinearLayout>
+    </com.google.android.material.navigation.NavigationView>
+
+    <LinearLayout
+        android:layout_gravity="end"
+        android:layout_width="match_parent"
+        android:gravity="top"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/drawer_navigation"/>
+
+    </LinearLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

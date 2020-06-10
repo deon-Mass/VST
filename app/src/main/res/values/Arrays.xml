@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="data">
+        <item>- Project -</item>
+        <item>Item</item>
+        <item>Item</item>
+        <item>Item</item>
+    </string-array>
+
+    <string-array name="data2">
+        <item>- Commercial -</item>
+        <item>Item</item>
+        <item>Item</item>
+        <item>Item</item>
+    </string-array>
+    <string-array name="data3">
+        <item>- Region -</item>
+        <item>Item</item>
+        <item>Item</item>
+        <item>Item</item>
+    </string-array>
+    <string-array name="data4">
+        <item>- Client -</item>
+    </string-array>
+    <string-array name="data5">
+        <item>- Produits -</item>
+    </string-array>
+    <string-array name="data6">
+        <item>- Money -</item>
+    </string-array>
+
+</resources>
