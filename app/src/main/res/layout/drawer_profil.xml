@@ -18,9 +18,9 @@
             android:orientation="vertical">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/avatar"/>
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/avatar2"/>
 
             <TextView
                 android:textStyle="bold"
@@ -30,27 +30,48 @@
                 android:layout_height="wrap_content"
                 android:text="Deon Massadi"/>
 
+
+            <LinearLayout
+                android:layout_marginLeft="1dp"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/white"
+                android:layout_marginVertical="10dp"/>
+
             <TextView
-                android:textSize="15dp"
+                android:textSize="17dp"
                 android:textColor="#fff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/lorem_long"/>
+                android:text="Téléphone : 814511083"/>
+            <TextView
+                android:textSize="17dp"
+                android:textColor="#fff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email : gedeonmass15@gmail.com"/>
 
             <TextView
+                android:layout_marginTop="50dp"
                 android:textStyle="bold"
                 android:textSize="30dp"
                 android:textColor="#fff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Détails"/>
+                android:text="Adresse"/>
 
             <TextView
                 android:textSize="15dp"
                 android:textColor="#fff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/lorem_semin_long"/>
+                android:text="N° 45 AV KISAKU"/>
+            <TextView
+                android:textSize="15dp"
+                android:textColor="#fff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quartier GOMBELE, Commune de Lemba"/>
 
         </LinearLayout>
 

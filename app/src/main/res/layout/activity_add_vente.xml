@@ -267,17 +267,5 @@
 
     </ScrollView>
 
-    <Button
-        android:layout_marginVertical="10dp"
-        android:paddingHorizontal="20dp"
-        android:drawableLeft="@drawable/ic_save_white"
-        android:drawablePadding="10dp"
-        android:textColor="@color/white"
-        android:text="enregistrer information"
-        android:background="@drawable/corner_bleu_solid_bleu"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
 
 </RelativeLayout>

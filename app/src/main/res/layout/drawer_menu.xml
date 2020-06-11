@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.navigation.NavigationView
+        app:itemTextAppearance="@style/NavigationViewStyle"
+        android:background="@color/dark"
+        android:layout_gravity="start"
+        android:id="@+id/navigationView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        app:itemTextColor="@color/white"
+        app:itemIconSize="25dp"
+        app:itemIconTint="@color/colorPrimary"
+        app:itemIconPadding="@dimen/bbn_badge_size"
+        app:menu="@menu/navigation_menu"
+        app:headerLayout="@layout/drawer_header_menu">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:clickable="true"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/footer_item_1"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center"
+                android:textSize="12dp"
+                android:textColor="@color/green"
+                android:text="All right reserved" />
+        </LinearLayout>
+    </com.google.android.material.navigation.NavigationView>
+
+</LinearLayout>
