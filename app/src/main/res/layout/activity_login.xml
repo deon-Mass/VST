@@ -10,8 +10,6 @@
     android:background="@color/blue"
     tools:context=".Views.Signin.Login">
 
-
-
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="200dp"
@@ -27,6 +25,7 @@
         android:padding="30dp">
 
         <EditText
+            android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="5dp"
@@ -38,6 +37,7 @@
             android:singleLine="true" />
 
         <EditText
+            android:id="@+id/passeword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginVertical="5dp"
