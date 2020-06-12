@@ -68,6 +68,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     SearchView searchView;
     ProgressBar charts_progressBar;
 
+    TextView textCartItemCount;
+    int mCartItemCount = 10;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -143,11 +146,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         anyChartView.setChart(c);
     }
 
-    public void Setting_badge(String count2) {
-        if (!count2.equals("0")) {
 
-        }
-    }
 
     @Override
     protected void onResume() {
@@ -194,35 +193,41 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    public void Setting_badge(String count2) {
+        if (count2.equals("0") || count2 == null){
+            textCartItemCount.setVisibility(View.GONE);
+        }else{
+            textCartItemCount.setVisibility(View.VISIBLE);
+            textCartItemCount.setText(count2);
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         getMenuInflater().inflate(R.menu.main_menu, menu);
+
+        final MenuItem menuItem = menu.findItem(R.id.notification);
+        View actionView = menuItem.getActionView();
+
+        // todo setting up notification badge
+        textCartItemCount = (TextView) actionView.findViewById(R.id.cart_badge);
+        Setting_badge("10");
+
+        actionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onOptionsItemSelected(menuItem);
+            }
+        });
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item){
         super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
-            case R.id.search :
-                SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
-                searchView = findViewById(R.id.search);
-                searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-                searchView.setIconifiedByDefault(false);
-                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                    @Override
-                    public boolean onQueryTextSubmit(String query) {
-                        Toast.makeText(context, query, Toast.LENGTH_SHORT).show();
-                        return true;
-                    }
-
-                    @Override
-                    public boolean onQueryTextChange(String newText) {
-                        Toast.makeText(context, newText, Toast.LENGTH_SHORT).show();
-                        return true;
-                    }
-                });
+            case R.id.notification :
+                Toast.makeText(context, "Count", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.profil :
                 if (drawer.isDrawerOpen(GravityCompat.END)) drawer.closeDrawer(GravityCompat.END);
