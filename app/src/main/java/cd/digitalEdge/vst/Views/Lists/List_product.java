@@ -2,7 +2,6 @@ package cd.digitalEdge.vst.Views.Lists;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.SearchManager;
@@ -13,53 +12,46 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import cd.digitalEdge.vst.Adaptors.Adaptor_Client_list;
+import cd.digitalEdge.vst.Adaptors.Adaptor_product_list;
+import cd.digitalEdge.vst.Controllers.Offline.SQLite.Sqlite_selects_methods;
 import cd.digitalEdge.vst.MainActivity;
 import cd.digitalEdge.vst.Objects.Customers;
+import cd.digitalEdge.vst.Objects.Products;
 import cd.digitalEdge.vst.R;
 import cd.digitalEdge.vst.Views.Blanks.Add_client;
 import cd.digitalEdge.vst.Views.Client_Account;
 
-public class List_clients extends AppCompatActivity {
-
+public class List_product extends AppCompatActivity {
     Context context = this;
-    Adaptor_Client_list adapter;
-    ListView clients_list;
+    Adaptor_product_list adapter;
+
+    ListView product_list;
     SwipeRefreshLayout swiper;
     int turn = 0;
 
 
-    ArrayList<Customers> DATAS = new ArrayList<>();
-    ArrayList<Customers> DATAS_SEARCHED = new ArrayList<>();
+    ArrayList<Products> DATAS = new ArrayList<>();
+    ArrayList<Products> DATAS_SEARCHED = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_clients);
+        setContentView(R.layout.activity_product_list);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Base de Clients");
+        getSupportActionBar().setTitle("Base de Produits");
 
         INIT_COMPONENT();
-        for (int i = 0; i < 10; i++) {
-            Customers c = new Customers();
-            c.setName("Customer "+i);
-            c.setAddress("Adresse "+i);
-            c.setEmail("gedeonmass15@gmail.com "+i);
-            c.setPhone("+243814511083 ");
-            DATAS.add(c);
-        }
         gettDatas();
     }
 
     private void INIT_COMPONENT() {
-        clients_list = findViewById(R.id.clients_list);
+        product_list = findViewById(R.id.product_list);
         swiper = findViewById(R.id.swiper);
     }
 
@@ -73,16 +65,12 @@ public class List_clients extends AppCompatActivity {
             }
         });
 
-        clients_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        product_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Customers c;
+                Products c;
                 if (turn == 0) c = DATAS.get(position);
                 else c = DATAS_SEARCHED.get(position);
-                Intent i  = new Intent(context, Client_Account.class);
-                i.putExtra("client_name", c.getName());
-                startActivity(i);
-                finish();
             }
         });
     }
@@ -103,7 +91,7 @@ public class List_clients extends AppCompatActivity {
         SearchManager manager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView search = (SearchView) menu.findItem(R.id.searchItem).getActionView();
         search.setSearchableInfo(manager.getSearchableInfo(getComponentName()));
-        search.setQueryHint("Recherche client");
+        search.setQueryHint("Recherche produit");
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -113,17 +101,17 @@ public class List_clients extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String newText) {
                 if (newText.length() < 1){
-                    adapter = new Adaptor_Client_list(context, DATAS);
-                    clients_list.setAdapter(adapter);
+                    adapter = new Adaptor_product_list(context, DATAS);
+                    product_list.setAdapter(adapter);
                     turn = 0;
                     return true;
                 }
                 DATAS_SEARCHED.clear();
-                for (Customers c : DATAS) {
-                    if (c.getName().contains(newText) ) DATAS_SEARCHED.add(c);
+                for (Products c : DATAS) {
+                    if (c.getTitle().contains(newText) ) DATAS_SEARCHED.add(c);
                 }
-                adapter = new Adaptor_Client_list(context, DATAS_SEARCHED);
-                clients_list.setAdapter(adapter);
+                adapter = new Adaptor_product_list(context, DATAS_SEARCHED);
+                product_list.setAdapter(adapter);
                 turn = 1;
                 return false;
             }
@@ -157,8 +145,13 @@ public class List_clients extends AppCompatActivity {
     // TODO METHOD
     private void gettDatas(){
         swiper.setRefreshing(true);
-        adapter = new Adaptor_Client_list(context, DATAS);
-        clients_list.setAdapter(adapter);
+
+        DATAS = Sqlite_selects_methods.getall_Products(context);
+        if (null == DATAS || DATAS.isEmpty() ){
+            DATAS = new ArrayList<>();
+        }
+        adapter = new Adaptor_product_list(context, DATAS);
+        product_list.setAdapter(adapter);
         swiper.setRefreshing(false);
     }
 

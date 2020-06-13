@@ -36,7 +36,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:padding="10dp"
+                            android:padding="0dp"
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -54,7 +54,7 @@
                             android:background="#D6D5D5"/>
 
                         <TextView
-                            android:padding="10dp"
+                            android:padding="0dp"
                             android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -74,7 +74,8 @@
                         android:background="#5FF4F3F3"/>
 
                     <EditText
-                        android:enabled="false"
+                        android:id="@+id/date_vente"
+                        android:editable="false"
                         android:singleLine="true"
                         android:background="@drawable/corner_bleu_solid_backgroung"
                         android:layout_width="match_parent"
@@ -97,6 +98,7 @@
                             android:layout_height="wrap_content">
 
                             <Spinner
+                                android:id="@+id/spinner_client"
                                 android:entries="@array/data4"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -153,6 +155,7 @@
                             android:layout_height="wrap_content">
 
                             <Spinner
+                                android:id="@+id/spinner_product"
                                 android:entries="@array/data5"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -162,11 +165,12 @@
                         <LinearLayout
                             android:layout_marginLeft="5dp"
                             android:background="@drawable/corner_bleu_solid_white"
-                            android:layout_weight="2"
+                            android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
                             <EditText
+                                android:id="@+id/Edit_prix"
                                 android:enabled="false"
                                 android:singleLine="true"
                                 android:background="@drawable/corner_bleu_solid_backgroung"
@@ -174,7 +178,8 @@
                                 android:layout_height="wrap_content"
                                 android:padding="10dp"
                                 android:inputType="number"
-                                android:hint="Qnt"/>
+                                android:hint="Prix"/>
+
 
                         </LinearLayout>
 
@@ -193,19 +198,22 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
+
                             <EditText
-                                android:enabled="false"
-                                android:singleLine="true"
-                                android:background="@drawable/corner_bleu_solid_backgroung"
+                                android:id="@+id/Edit_qnt"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:padding="10dp"
+                                android:background="@drawable/corner_bleu_solid_backgroung"
+                                android:enabled="true"
+                                android:hint="Qnt"
                                 android:inputType="number"
-                                android:hint="Prix"/>
+                                android:padding="10dp"
+                                android:singleLine="true" />
 
                         </LinearLayout>
 
                         <LinearLayout
+                            android:visibility="gone"
                             android:layout_marginLeft="5dp"
                             android:background="@drawable/corner_bleu_solid_white"
                             android:layout_weight="2"
@@ -228,6 +236,7 @@
                         android:orientation="horizontal">
 
                         <Button
+                            android:id="@+id/BTN_add"
                             android:layout_marginRight="5dp"
                             android:layout_weight="1"
                             android:paddingHorizontal="20dp"
@@ -242,6 +251,7 @@
                             android:layout_height="wrap_content"/>
 
                         <TextView
+                            android:id="@+id/BTN_product_added"
                             android:padding="13dp"
                             android:layout_marginLeft="5dp"
                             android:layout_weight="1"
@@ -266,6 +276,5 @@
         </LinearLayout>
 
     </ScrollView>
-
 
 </RelativeLayout>

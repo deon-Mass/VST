@@ -1,24 +1,28 @@
 package cd.digitalEdge.vst.Objects;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+import java.util.ArrayList;
 
 import cd.digitalEdge.vst.Controllers.Offline.DataBase;
 import cd.digitalEdge.vst.Tools.Constants;
 
-public class Products {
+public class Projects {
     public String id                = "id";
     public String title             = "title";
-    public String mesure            = "mesure";
-    public String price             = "price";
-    public String price_editable    = "price_editable";
+    public String description            = "description";
     public String picture           = "picture";
-    public String project_id        = "project_id";
-    public String project_name      = "project_name";
+    public String office_id             = "office_id";
     public String created_at        = "created_at";
     public String created_by        = "created_by";
     public String updating          = "updating";
     public String status            = "status";
+
+
+
 
     public String getId() {
         return id;
@@ -36,28 +40,12 @@ public class Products {
         this.title = title;
     }
 
-    public String getMesure() {
-        return mesure;
+    public String getDescription() {
+        return description;
     }
 
-    public void setMesure(String mesure) {
-        this.mesure = mesure;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
-    public String getPrice_editable() {
-        return price_editable;
-    }
-
-    public void setPrice_editable(String price_editable) {
-        this.price_editable = price_editable;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getPicture() {
@@ -68,20 +56,12 @@ public class Products {
         this.picture = picture;
     }
 
-    public String getProject_id() {
-        return project_id;
+    public String getOffice_id() {
+        return office_id;
     }
 
-    public void setProject_id(String project_id) {
-        this.project_id = project_id;
-    }
-
-    public String getProject_name() {
-        return project_name;
-    }
-
-    public void setProject_name(String project_name) {
-        this.project_name = project_name;
+    public void setOffice_id(String office_id) {
+        this.office_id = office_id;
     }
 
     public String getCreated_at() {
@@ -116,9 +96,6 @@ public class Products {
         this.status = status;
     }
 
-
-
-
     public static boolean if_exist_id(Context context, String id2) {
         SQLiteDatabase base;
         Exception e;
@@ -127,8 +104,8 @@ public class Products {
             mabase = new DataBase(context, mabase.db_name, null, 2);
             base = mabase.getReadableDatabase();
             try {
-                Products column = new Products();
-                String str = Constants.PRODUCT;
+                Projects column = new Projects();
+                String str = Constants.PROJECT;
                 String[] strArr = {column.id};
                 StringBuilder sb = new StringBuilder();
                 sb.append(column.id);
@@ -173,7 +150,7 @@ public class Products {
         }
     }
 
-    public static boolean if_exist(Context context, Products s) {
+    public static boolean if_exist(Context context, Projects s) {
         String str = " = '";
         DataBase mabase = null;
         SQLiteDatabase base = null;
@@ -181,8 +158,8 @@ public class Products {
             mabase = new DataBase(context, mabase.db_name, null, 2);
             SQLiteDatabase base2 = mabase.getReadableDatabase();
             try {
-                Products column = new Products();
-                String str2 = Constants.PRODUCT;
+                Projects column = new Projects();
+                String str2 = Constants.PROJECT;
                 String[] strArr = {column.id};
                 StringBuilder sb = new StringBuilder();
                 sb.append(column.id);
@@ -233,7 +210,6 @@ public class Products {
             return false;
         }
     }
-
 
 
 }

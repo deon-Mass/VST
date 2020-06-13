@@ -20,7 +20,8 @@ public class Users {
     public String connexion_token= "connexion_token";
     public String status         = "status";
 
-
+    
+    
     public String getId() {
         return id;
     }
@@ -164,6 +165,9 @@ public class Users {
     public void setStatus(String status) {
         this.status = status;
     }
+
+
+
 
 
 

@@ -11,20 +11,19 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Random;
 
-import cd.digitalEdge.vst.Objects.Customers;
+import cd.digitalEdge.vst.Objects.Products;
+import cd.digitalEdge.vst.Objects.Products;
 import cd.digitalEdge.vst.R;
-import cd.digitalEdge.vst.Tools.Tool;
 
-public class Adaptor_Client_list extends BaseAdapter {
+public class Adaptor_product_list extends BaseAdapter {
 
     Context context;
-    ArrayList<Customers> DATAS;
+    ArrayList<Products> DATAS;
 
-    public Adaptor_Client_list(Context context, ArrayList<Customers> DATAS) {
+    public Adaptor_product_list(Context context, ArrayList<Products> DATAS) {
         this.context = context;
         this.DATAS = DATAS;
     }
@@ -48,12 +47,12 @@ public class Adaptor_Client_list extends BaseAdapter {
         TextView detail  = convertView2.findViewById(R.id.detail);
         ImageView option  = convertView2.findViewById(R.id.option);
 
-        Customers data = DATAS.get(position);
+        Products data = DATAS.get(position);
 
-        client_name.setText(data.getName());
-        detail.setText(data.getAddress()+"\n"+ data.getPhone());
+        client_name.setText(data.getTitle());
+        detail.setText(data.getPrice()+"\n"+ data.getProject_id());
 
-        index_letter.setText(data.getName().substring(0,1));
+        index_letter.setText(data.getTitle().substring(0,1));
         int r = new Random().nextInt(4);
         if (r == 1) index_letter.setBackgroundResource(R.drawable.oval_blue);
         if (r == 2) index_letter.setBackgroundResource(R.drawable.oval_red);

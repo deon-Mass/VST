@@ -14,6 +14,11 @@ import android.util.Log;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import cd.digitalEdge.vst.Controllers.Config_preferences;
+import cd.digitalEdge.vst.Tools.Tool;
+import io.nlopez.smartlocation.OnLocationUpdatedListener;
+import io.nlopez.smartlocation.SmartLocation;
+
 //import io.nlopez.smartlocation.OnLocationUpdatedListener;
 //import io.nlopez.smartlocation.SmartLocation;
 
@@ -34,6 +39,8 @@ public class LocationServices extends Service {
         public void run() {
             LocationServices.this.mHandler.post(new Runnable() {
                 public void run() {
+
+                    Log.e("MYLOCATION", "je tourne bien");
                     ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
                     NetworkInfo info = manager.getActiveNetworkInfo();
                     if (info != null && info.isConnected()) {
@@ -43,6 +50,7 @@ public class LocationServices extends Service {
             });
         }
     }
+
 
     public IBinder onBind(Intent intent) {
         throw new UnsupportedOperationException("Not yet implemented");
@@ -66,7 +74,7 @@ public class LocationServices extends Service {
 
     /* access modifiers changed from: 0000 */
     public void Mylocation() {
-        /*try {
+        try {
             SmartLocation.with(getApplicationContext()).location().start(new OnLocationUpdatedListener() {
                 public void onLocationUpdated(Location location) {
                     if (location == null) {
@@ -78,12 +86,13 @@ public class LocationServices extends Service {
                     sb.append(",");
                     sb.append(location.getLongitude());
                     String sb2 = sb.toString();
-                    Tool.setUserPreferences(LocationServices.this.getApplicationContext(), Config_preferences.LAT, String.valueOf(location.getLatitude()));
-                    Tool.setUserPreferences(LocationServices.this.getApplicationContext(), Config_preferences.LONG, String.valueOf(location.getLongitude()));
+                    Log.e("MYLOCATION", sb2);
+                    Tool.setUserPreferences(context, Config_preferences.LAT, String.valueOf(location.getLatitude()));
+                    Tool.setUserPreferences(context, Config_preferences.LONG, String.valueOf(location.getLongitude()));
                 }
             });
         } catch (Exception e) {
             Log.e("CodePackage.LOCATION", e.getMessage());
-        }*/
+        }
     }
 }

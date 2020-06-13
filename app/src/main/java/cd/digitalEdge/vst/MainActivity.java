@@ -1,24 +1,22 @@
 package cd.digitalEdge.vst;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.ActionBarContextView;
 import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.multidex.MultiDex;
 
 import android.Manifest;
-import android.app.ActionBar;
+import android.app.ActivityManager;
 import android.app.AlertDialog;
-import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,21 +24,13 @@ import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
 import com.anychart.chart.common.dataentry.DataEntry;
 import com.anychart.chart.common.dataentry.ValueDataEntry;
 import com.anychart.charts.Cartesian;
-import com.anychart.charts.Cartesian3d;
-import com.anychart.charts.LinearGauge;
 import com.anychart.charts.Pie;
-import com.anychart.charts.Polar;
-import com.anychart.charts.Venn;
-import com.anychart.core.cartesian.series.Column;
-import com.google.android.material.bottomnavigation.BottomNavigationItemView;
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.karumi.dexter.Dexter;
@@ -48,14 +38,21 @@ import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
-import com.karumi.dexter.listener.multi.SnackbarOnAnyDeniedMultiplePermissionsListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import cd.digitalEdge.vst.Controllers.Background.LocationServices;
+import cd.digitalEdge.vst.Controllers.Config_preferences;
 import cd.digitalEdge.vst.Tools.Preferences;
+import cd.digitalEdge.vst.Tools.Tool;
 import cd.digitalEdge.vst.Views.Lists.List_clients;
+import cd.digitalEdge.vst.Views.Lists.List_product;
 import cd.digitalEdge.vst.Views.Signin.Login;
+import io.nlopez.smartlocation.OnLocationUpdatedListener;
+import io.nlopez.smartlocation.SmartLocation;
+import io.nlopez.smartlocation.location.config.LocationAccuracy;
+import io.nlopez.smartlocation.location.config.LocationParams;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     Context context = this;
@@ -63,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     NavigationView navigationView;
     DrawerLayout drawer;
-    CardView CARD_CLIENTS;
+    CardView CARD_CLIENTS,CARD_PRODUCTS;
     AnyChartView anyChartView;
     SearchView searchView;
     ProgressBar charts_progressBar;
@@ -81,14 +78,108 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         if (Preferences.getUserPreferences(context, "logged").equals("")){}
         INIT_COMPONENT();
+        LocationManager manager = (LocationManager) getSystemService( Context.LOCATION_SERVICE );
+        if ( !manager.isProviderEnabled( LocationManager.GPS_PROVIDER ) ) {
+            buildAlertMessageNoGps();
+        }
         conditions();
         CheckPermission();
         set_Charts();
     }
 
+    public static void startServiceIfItsNotRuning(Class<?> class1, Context context) {
+        context.startService(new Intent(context, class1));
+        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (class1.getName().equals(service.service.getClassName())) {
+                Log.d("servisstart ", class1.getName());
+                return;
+            }
+        }
+    }
 
+    private void buildAlertMessageNoGps() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        String str = "No";
+        builder.setMessage((CharSequence) "Your GPS seems to be disabled, do you want to enable it?")
+               .setCancelable(false).setPositiveButton((CharSequence) "Yes", (DialogInterface.OnClickListener) new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        startActivity(new Intent("android.settings.LOCATION_SOURCE_SETTINGS"));
+                    }
+                })
+                .setNegativeButton((CharSequence) str, (DialogInterface.OnClickListener) new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        builder.create().show();
+    }
+
+
+    private void startLocationListener() {
+
+        long mLocTrackingInterval = 1000 * 5; // 5 sec
+        float trackingDistance = 0;
+        LocationAccuracy trackingAccuracy = LocationAccuracy.HIGH;
+
+        LocationParams.Builder builder = new LocationParams.Builder()
+                .setAccuracy(trackingAccuracy)
+                .setDistance(trackingDistance)
+                .setInterval(mLocTrackingInterval);
+
+        SmartLocation.with(this)
+                .location()
+                .continuous()
+                .config(builder.build())
+                .start(new OnLocationUpdatedListener() {
+                    @Override
+                    public void onLocationUpdated(Location location) {
+                        StringBuilder sb = new StringBuilder();
+                        sb.append(location.getLatitude());
+                        sb.append(",");
+                        sb.append(location.getLongitude());
+                        String sb2 = sb.toString();
+                        Log.e("MYLOCATION", sb2);
+                        Tool.setUserPreferences(context, Config_preferences.LAT, String.valueOf(location.getLatitude()));
+                        Tool.setUserPreferences(context, Config_preferences.LONG, String.valueOf(location.getLongitude()));
+
+                        String lat = Tool.getUserPreferences(context, Config_preferences.LAT);
+                        String lng = Tool.getUserPreferences(context, Config_preferences.LONG);
+                        Tool.Dialog(context, "Ma position", lat+","+lng);
+                    }
+                });
+    }
+
+    public void Mylocation() {
+        try {
+            SmartLocation.with(context).location().start(new OnLocationUpdatedListener() {
+                public void onLocationUpdated(Location location) {
+                    if (location == null) {
+                        Log.e("MYLOCATION", "Location null");
+                        Mylocation();
+                        return;
+                    }
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(location.getLatitude());
+                    sb.append(",");
+                    sb.append(location.getLongitude());
+                    String sb2 = sb.toString();
+                    Log.e("MYLOCATION", sb2);
+                    Tool.setUserPreferences(context, Config_preferences.LAT, String.valueOf(location.getLatitude()));
+                    Tool.setUserPreferences(context, Config_preferences.LONG, String.valueOf(location.getLongitude()));
+
+                    String lat = Tool.getUserPreferences(context, Config_preferences.LAT);
+                    String lng = Tool.getUserPreferences(context, Config_preferences.LONG);
+                    Tool.Dialog(context, "Ma position", lat+","+lng);
+                }
+            });
+        } catch (Exception e) {
+            Log.e("CodePackage.LOCATION", e.getMessage());
+        }
+    }
 
     private void conditions(){
+        startServiceIfItsNotRuning(LocationServices.class, context);
         if (getIntent().hasExtra("logged")){
             Snackbar.make(drawer, (CharSequence) "Bienvenu (e)", 5000).show();
         }
@@ -123,6 +214,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         text = findViewById(R.id.text);
         drawer = findViewById(R.id.drawer);
         CARD_CLIENTS = findViewById(R.id.CARD_CLIENTS);
+        CARD_PRODUCTS = findViewById(R.id.CARD_PRODUCTS);
         navigationView = findViewById(R.id.navigationView);
         charts_progressBar = findViewById(R.id.charts_progressBar);
         anyChartView = (AnyChartView) findViewById(R.id.any_chart_view);
@@ -146,8 +238,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         anyChartView.setChart(c);
     }
 
-
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -155,6 +245,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 Intent i  = new Intent(context, List_clients.class);
+                startActivity(i);
+                finish();
+            }
+        });
+        CARD_PRODUCTS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i  = new Intent(context, List_product.class);
                 startActivity(i);
                 finish();
             }
@@ -177,7 +275,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Toast.makeText(context, "test", Toast.LENGTH_SHORT).show();
             m = true;
         }else if (id == R.id.dr_client) {
-            Intent i  = new Intent(context, Login.class);
+            Intent i  = new Intent(context, List_clients.class);
             startActivity(i);
             finish();
             m = true;
@@ -226,6 +324,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
         super.onOptionsItemSelected(item);
         switch (item.getItemId()) {
+            case R.id.location :
+                Mylocation();
+                break;
             case R.id.notification :
                 Toast.makeText(context, "Count", Toast.LENGTH_SHORT).show();
                 break;

@@ -202,6 +202,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/CARD_PRODUCTS"
                 app:cardCornerRadius="5dp"
                 app:cardBackgroundColor="@color/red"
                 android:layout_width="match_parent"
@@ -233,7 +234,7 @@
                                 android:fontFamily="@font/actor"
                                 android:gravity="start"
                                 android:textStyle="bold"
-                                android:text="Les produits"
+                                android:text="Base produits"
                                 android:textColor="@color/white"
                                 android:textSize="17dp"
                                 />
@@ -294,6 +295,7 @@
             </androidx.cardview.widget.CardView>
 
             <RelativeLayout
+                android:visibility="gone"
                 android:layout_marginHorizontal="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="250dp">
@@ -329,8 +331,7 @@
         android:padding="5dp"
         android:gravity="center"
         android:textSize="14dp"
-        android:textColor="@color/white"
-        android:textStyle="bold"
+        android:textColor="@color/dark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Vendis Sales tracker"/>

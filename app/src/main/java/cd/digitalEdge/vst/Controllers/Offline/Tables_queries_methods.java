@@ -1,153 +1,60 @@
 package cd.digitalEdge.vst.Controllers.Offline;
 
 
+import cd.digitalEdge.vst.Objects.Products;
+import cd.digitalEdge.vst.Objects.Projects;
+import cd.digitalEdge.vst.Objects.Users;
+import cd.digitalEdge.vst.Tools.Constants;
+
 public class Tables_queries_methods {
-    /*public static String create_table_Illness_question() {
-        Illness_questions c = new Illness_questions();
-        StringBuilder sb = new StringBuilder();
-        sb.append("create table ");
-        sb.append(c.table_name);
-        sb.append(" (");
-        sb.append(c.id);
-        sb.append(" varchar(25) primary key, ");
-        sb.append(c.content);
-        String str = " varchar(500),";
-        sb.append(str);
-        sb.append(c.illness_ids);
-        sb.append(str);
-        sb.append(c.gender);
-        sb.append(str);
-        sb.append(c.category_age);
-        sb.append(str);
-        sb.append(c.created_at);
-        sb.append(str);
-        sb.append(c.created_by);
-        sb.append(str);
-        sb.append(c.updating);
-        sb.append(str);
-        sb.append(c.status);
-        sb.append(" varchar(500) )");
-        return sb.toString();
+    public static String create_table_User() {
+        Users c = new Users();
+        return "create table "+ Constants.USERS +" (" +
+                c.id+ " varchar(25) primary key, " +
+                c.role_id+ " varchar(500),"+
+                c.name+ " varchar(500),"+
+                c.username+ " varchar(500),"+
+                c.email+ " varchar(500),"+
+                c.phone+ " varchar(500),"+
+                c.password+ " varchar(500),"+
+                c.avatar+ " varchar(500),"+
+                c.address+ " varchar(500),"+
+                c.gender+ " varchar(500),"+
+                c.office_id+ " varchar(500),"+
+                c.project_ids+ " varchar(500),"+
+                c.created_at+ " varchar(500),"+
+                c.created_by+ " varchar(500),"+
+                c.updating+ " varchar(500),"+
+                c.status+ " varchar(500) )";
+    }
+    public static String create_table_Products() {
+        Products c = new Products();
+        return "create table "+ Constants.PRODUCT +" (" +
+                c.id+ " varchar(25) primary key, " +
+                c.title+ " varchar(500),"+
+                c.mesure+ " varchar(500),"+
+                c.price+ " varchar(500),"+
+                c.price_editable+ " varchar(500),"+
+                c.picture+ " varchar(500),"+
+                c.project_id+ " varchar(500),"+
+                c.created_at+ " varchar(500),"+
+                c.created_by+ " varchar(500),"+
+                c.updating+ " varchar(500),"+
+                c.status+ " varchar(500) )";
     }
 
-    public static String create_table_symptoms() {
-        Symptoms c = new Symptoms();
-        StringBuilder sb = new StringBuilder();
-        sb.append("create table ");
-        sb.append(c.table_name);
-        sb.append(" (");
-        sb.append(c.id);
-        sb.append(" varchar(25) primary key, ");
-        sb.append(c.title);
-        String str = " varchar(500),";
-        sb.append(str);
-        sb.append(c.description);
-        sb.append(str);
-        sb.append(c.illness_ids);
-        sb.append(str);
-        sb.append(c.created_at);
-        sb.append(str);
-        sb.append(c.status);
-        sb.append(" varchar(500) )");
-        return sb.toString();
+    public static String create_table_Projects() {
+        Projects c = new Projects();
+        return "create table "+ Constants.PRODUCT +" (" +
+                c.id+ " varchar(25) primary key, " +
+                c.title+ " varchar(500),"+
+                c.description+ " varchar(500),"+
+                c.picture+ " varchar(500),"+
+                c.office_id+ " varchar(500),"+
+                c.created_at+ " varchar(500),"+
+                c.created_by+ " varchar(500),"+
+                c.updating+ " varchar(500),"+
+                c.status+ " varchar(500) )";
     }
 
-    public static String create_table_chat_discussion() {
-        Chat_discussions c = new Chat_discussions();
-        StringBuilder sb = new StringBuilder();
-        sb.append("create table ");
-        sb.append(c.table_name);
-        sb.append(" (");
-        sb.append(c.id);
-        sb.append(" varchar(25) primary key, ");
-        sb.append(c.medecin_id);
-        sb.append(" varchar(500), ");
-        sb.append(c.medecin_name);
-        String str = " varchar(500),";
-        sb.append(str);
-        sb.append(c.medecin_middlename_ag);
-        sb.append(str);
-        sb.append(c.medecin_firstnam);
-        sb.append(str);
-        sb.append(c.avatar);
-        sb.append(str);
-        sb.append(c.message);
-        sb.append(str);
-        sb.append(c.cr);
-        sb.append(" varchar(500) )");
-        return sb.toString();
-    }
-
-    public static String create_table_chats() {
-        Chats c = new Chats();
-        StringBuilder sb = new StringBuilder();
-        sb.append("create table ");
-        sb.append(Config_preferences.table_name);
-        sb.append(" (");
-        sb.append(c.id);
-        sb.append(" varchar(25) primary key, ");
-        sb.append(c.from_id);
-        String str = " varchar(500), ";
-        sb.append(str);
-        sb.append(c.from_name);
-        sb.append(str);
-        sb.append(c.from_middlename);
-        sb.append(str);
-        sb.append(c.from_firstname);
-        sb.append(str);
-        sb.append(c.notified);
-        sb.append(str);
-        sb.append(c.read_at);
-        sb.append(str);
-        sb.append(c.to_id);
-        String str2 = " varchar(500),";
-        sb.append(str2);
-        sb.append(c.message);
-        sb.append(str2);
-        sb.append(c.read_status);
-        sb.append(str2);
-        sb.append(c.created_at);
-        sb.append(" varchar(500) )");
-        return sb.toString();
-    }
-
-    public static String create_table_pharmacies() {
-        Pharma c = new Pharma();
-        StringBuilder sb = new StringBuilder();
-        sb.append("create table ");
-        sb.append(c.table_name);
-        sb.append(" (");
-        sb.append(c.id);
-        sb.append(" varchar(25) primary key, ");
-        sb.append(c.title);
-        String str = " varchar(500),";
-        sb.append(str);
-        sb.append(c.street);
-        sb.append(str);
-        sb.append(c.commune);
-        sb.append(str);
-        sb.append(c.city);
-        sb.append(str);
-        sb.append(c.phone);
-        sb.append(str);
-        sb.append(c.email);
-        sb.append(str);
-        sb.append(c.responsable);
-        sb.append(str);
-        sb.append(c.latlng);
-        sb.append(str);
-        sb.append(c.picture);
-        sb.append(str);
-        sb.append(c.slug);
-        sb.append(str);
-        sb.append(c.created_by);
-        sb.append(str);
-        sb.append(c.created_at);
-        sb.append(str);
-        sb.append(c.updating);
-        sb.append(str);
-        sb.append(c.status);
-        sb.append(" varchar(500) )");
-        return sb.toString();
-    }*/
 }
