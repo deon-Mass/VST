@@ -9,7 +9,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,19 +19,24 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import cd.digitalEdge.vst.Adaptors.Adaptor_Categorie;
 import cd.digitalEdge.vst.Controllers.Config;
-import cd.digitalEdge.vst.Controllers.Online.Selects_queries;
+import cd.digitalEdge.vst.Controllers.Config_preferences;
 import cd.digitalEdge.vst.MainActivity;
+import cd.digitalEdge.vst.Objects.Articles;
+import cd.digitalEdge.vst.Objects.Categories;
 import cd.digitalEdge.vst.Objects.Users;
 import cd.digitalEdge.vst.R;
+import cd.digitalEdge.vst.Tools.Preferences;
 import cd.digitalEdge.vst.Tools.Tool;
 import cd.digitalEdge.vst.Tools.Utils;
-import cd.digitalEdge.vst.Views.Lists.List_clients;
 
 public class Login extends AppCompatActivity {
 
@@ -77,16 +81,7 @@ public class Login extends AppCompatActivity {
                     if (info == null || !info.isConnected()) {
                         Snackbar.make(v, (CharSequence) "Vous n'êtes pas connecté", 5000).show();
                     } else {
-                        if (user_name.equals("deon") && pass.equals("123456") ) {
-                            //auth(user_name, pass);
-                            Intent i  = new Intent(context, MainActivity.class);
-                            i.putExtra("logged", true);
-                            startActivity(i);
-                            finish();
-                        }else{
-                            Snackbar.make(v, (CharSequence) "Authentification incorrect", 5000).show();
-
-                        }
+                        auth(user_name, pass, v);
                     }
                 }
 
@@ -95,61 +90,52 @@ public class Login extends AppCompatActivity {
         });
     }
 
-
-
-    public void auth(String phone2, String passe2) {
+    public void auth(String email, String passe, View v) {
         logging_loading.setVisibility(View.VISIBLE);
-        String value = null;
-        try {
-            value = Selects_queries.auth(phone2, Tool.SHA1(passe2));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        AndroidNetworking.post(Config.SERVER_PATH)
-                .addBodyParameter("auth", Config.auth)
-                .addBodyParameter("method", "1")
-                .addBodyParameter("query", value)
+        AndroidNetworking
+                .post(Config.GET_USER)
+                .addBodyParameter("email", email)
+                .addBodyParameter("password", passe)
                 .setPriority(Priority.HIGH)
                 .build()
-                .getAsJSONArray(new JSONArrayRequestListener() {
-                    public void onResponse(JSONArray response) {
-                        String str = "AN_ERROR1";
-                        Log.e(str, response.toString());
-                        String str2 = "Authentification";
-                        if (response == null || response.length() < 1) {
-                            Utils.MonToast(Login.this.context, str2, "Authentification incorrect", "Danger");
-                            logging_loading.setVisibility(View.GONE);
-                            return;
-                        }
-                        int i = 0;
-                        while (i < response.length()) {
-                            try {
-                                JSONObject jsonObject = response.getJSONObject(i);
-                                Users u = new Users();
-                                Users columns = new Users();
-                                u.setId(jsonObject.getString(columns.id));
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            Log.i("PRODUCT_DATAS---- ", response.toString());
+                            JSONObject jsonObject = response.getJSONObject("user");
+                            Users u = new Users();
+                            u.setId(jsonObject.getString(new Users().id));
+                            u.setName(jsonObject.getString(new Users().name));
+                            u.setEmail(jsonObject.getString(new Users().email));
+                            u.setAvatar(jsonObject.getString(new Users().avatar));
+                            u.setRole_id(jsonObject.getString(new Users().role_id));
 
-                                Tool.userPreferences_Set(Login.this.context, u);
-                                Intent intent = new Intent(Login.this.context, MainActivity.class);
-                                Utils.MonToast(Login.this.context, str2, "Authentification correct", "Success");
-                                Login.this.startActivity(intent);
-                                Login.this.finish();
-                                i++;
-                            } catch (Exception e) {
-                                Log.e(str, e.getMessage());
+                            Preferences.SaveCurrentUser(context, u);
+                            if (
+                                    Preferences.getUserPreferences(context, Config_preferences.CURRENT_USER).equals("null") ||
+                                    Preferences.getUserPreferences(context, Config_preferences.CURRENT_USER) == null
+                            ){
+                                Toast.makeText(context, "CURRENT USER NULL", Toast.LENGTH_SHORT).show();
+                                return;
                             }
+                            Intent i  = new Intent(context, MainActivity.class);
+                            i.putExtra("logged", true);
+                            startActivity(i);
+                            finish();
+
+                        } catch (JSONException e) {
+                            Log.e("PRODUCT_DATAS--XX ",e.getMessage());
                         }
                     }
-                    public void onError(ANError error) {
+
+                    @Override
+                    public void onError(ANError anError) {
                         logging_loading.setVisibility(View.GONE);
-                        Toast.makeText(context, error.toString(), Toast.LENGTH_LONG).show();
-                        Log.e("AN_ERROR", error.getMessage());
+                        Log.e("PRODUCT_DATAS ",anError.getMessage());
+                        Snackbar.make(v, (CharSequence) "Authentification incorrect", 5000).show();
                     }
                 });
     }
-
-
-
 
 }

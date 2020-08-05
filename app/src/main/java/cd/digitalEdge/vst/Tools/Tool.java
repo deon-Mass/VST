@@ -45,6 +45,7 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -143,7 +144,7 @@ public class Tool {
         }
     }
 
-    /*public static void Load_Image2(Context context, final ImageView imageView, String url) {
+    public static void Load_Image2(Context context, final ImageView imageView, String url) {
         try {
             new GifDrawable(context.getResources(), (int) R.drawable.gif4);
             imageView.setImageResource(R.drawable.avatar);
@@ -165,14 +166,44 @@ public class Tool {
             e.printStackTrace();
         }
     }
+    public static void Load_Image22(Context context, final ImageView imageView, String url) {
+        try {
+            //new GifDrawable(context.getResources(), (int) R.drawable.avatar);
+            imageView.setImageResource(R.drawable.unknow);
+            Ion.with(context)
+                    .load(url)
+                    .withBitmap()
+                    .asBitmap()
+                    .setCallback(new FutureCallback<Bitmap>() {
+                public void onCompleted(Exception e, Bitmap bitmap) {
+                    if (bitmap == null) {
+                        imageView.setImageResource(R.drawable.unknow);
+                        return;
+                    }
+                    Bitmap circleBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Config.ARGB_8888);
+                    BitmapShader shader = new BitmapShader(bitmap, TileMode.CLAMP, TileMode.CLAMP);
+                    Paint paint = new Paint();
+                    paint.setShader(shader);
+                    new Canvas(circleBitmap).drawCircle((float) (bitmap.getWidth() / 2), (float) (bitmap.getHeight() / 2), (float) (bitmap.getWidth() / 2), paint);
+                    imageView.setImageBitmap(circleBitmap);
+                }
+            });
+        } catch (Exception e) {
+            Log.e("PRODUCT_DATAS--XX ",e.getMessage());
+        }
+    }
 
     public static void Load_Image(Context context, ImageView imageView, String url) {
         try {
-            ((F) ((F) ((F) Ion.with(imageView).placeholder((Drawable) new GifDrawable(context.getResources(), (int) R.drawable.gif4))).error((int) R.drawable.avatar)).animateGif(AnimateGifMode.ANIMATE)).load(url);
+            Ion.with(imageView)
+                    .placeholder((Drawable) new GifDrawable(context.getResources(), (int) R.drawable.gif5))
+                    .error((int) R.drawable.unknow)
+                    .animateGif(AnimateGifMode.ANIMATE)
+                    .load(url);
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e("PRODUCT_DATAS--XX ",e.getMessage());
         }
-    }*/
+    }
 
     public static void Dialog(Context context, String title, String mesg) {
         new Builder(context).setTitle((CharSequence) title).setMessage((CharSequence) mesg).setNegativeButton((CharSequence) "D'accord", (OnClickListener) new OnClickListener() {
@@ -215,17 +246,6 @@ public class Tool {
         String str2 = "";
         setUserPreferences(context, column.id, str2);
         setUserPreferences(context, column.name, str2);
-        setUserPreferences(context, column.phone, str2);
-        setUserPreferences(context, column.password, str2);
-        setUserPreferences(context, column.email, str2);
-        setUserPreferences(context, column.gender, str2);
-        setUserPreferences(context, column.avatar, str2);
-        setUserPreferences(context, column.role_id, str2);
-        setUserPreferences(context, column.last_connexion, str2);
-        setUserPreferences(context, column.created_at, str2);
-        setUserPreferences(context, column.created_by, str2);
-        setUserPreferences(context, column.updating, str2);
-        setUserPreferences(context, column.status, str2);
     }
 
     public static void userPreferences_Set(Context context, Users u) {
@@ -233,17 +253,6 @@ public class Tool {
         setUserPreferences(context, "FirstUse", "No");
         setUserPreferences(context, column.id, u.getId());
         setUserPreferences(context, column.name, u.getName());
-        setUserPreferences(context, column.phone, u.getPhone());
-        setUserPreferences(context, column.password, u.getPassword());
-        setUserPreferences(context, column.email, u.getEmail());
-        setUserPreferences(context, column.gender, u.getGender());
-        setUserPreferences(context, column.avatar, u.getAvatar());
-        setUserPreferences(context, column.role_id, u.getRole_id());
-        setUserPreferences(context, column.last_connexion, u.getLast_connexion());
-        setUserPreferences(context, column.created_at, u.getCreated_at());
-        setUserPreferences(context, column.created_by, u.getCreated_by());
-        setUserPreferences(context, column.updating, u.getUpdating());
-        setUserPreferences(context, column.status, u.getStatus());
     }
 
     public String GetDeviceipMobileData() {

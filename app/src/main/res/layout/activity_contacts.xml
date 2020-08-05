@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:padding="10dp"
+    tools:context=".Views.Contacts">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font3"
+            android:padding="10dp"
+            android:text="Formulaire de Contact"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp" />
+
+        <LinearLayout
+            android:paddingHorizontal="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <com.google.android.material.textfield.TextInputLayout
+                android:hint="Votre  nom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:singleLine="true"
+                    android:inputType="text"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/font3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="13dp"
+                    android:background="@drawable/corner_gris_transparent"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:hint="Votre  Email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:singleLine="true"
+                    android:inputType="textEmailAddress"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/font3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:background="@drawable/corner_gris_transparent"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:hint="Votre Syjet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:singleLine="true"
+                    android:inputType="text"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/font3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:background="@drawable/corner_gris_transparent"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:hint="Votre  Message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:gravity="top"
+                    android:inputType="text"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/font3"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:padding="15dp"
+                    android:background="@drawable/corner_gris_transparent"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/font6"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:background="@drawable/corner_bleu_solid_bleu"
+                android:paddingVertical="10dp"
+                android:paddingHorizontal="30dp"
+                android:text="Envoyer"
+                android:textSize="13dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/font3"
+                    android:gravity="left"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="Trouvez-nous ici"
+                    android:textSize="20dp" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/font5"
+                    android:gravity="left"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="@string/lorem_contact"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:gravity="center_vertical"
+                android:padding="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_margin="6dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_phone_gris"/>
+
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#CDE6E6E6"
+                    android:layout_marginVertical="10dp"
+                    android:layout_marginHorizontal="5dp"/>
+
+                <LinearLayout
+                    android:padding="10dp"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font3"
+                        android:gravity="start"
+                        android:text="Tél"
+                        android:textColor="@color/dark"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font5"
+                        android:gravity="start"
+                        android:text="(243)999 999 99"
+                        android:textColor="@color/dark"
+                        android:textSize="15dp"
+                        />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:padding="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_margin="6dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_postal"/>
+
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#CDE6E6E6"
+                    android:layout_marginVertical="10dp"
+                    android:layout_marginHorizontal="5dp"/>
+
+                <LinearLayout
+                    android:padding="10dp"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font3"
+                        android:gravity="start"
+                        android:text="Boite postal"
+                        android:textColor="@color/dark"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font5"
+                        android:gravity="start"
+                        android:text="2061 KIN I"
+                        android:textColor="@color/dark"
+                        android:textSize="15dp"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:padding="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_margin="6dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ic_web"/>
+
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="#CDE6E6E6"
+                    android:layout_marginVertical="10dp"
+                    android:layout_marginHorizontal="5dp"/>
+
+                <LinearLayout
+                    android:padding="10dp"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font3"
+                        android:gravity="start"
+                        android:text="Site web"
+                        android:textColor="@color/dark"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font5"
+                        android:gravity="start"
+                        android:text="www.lesupeme.shop"
+                        android:textColor="@color/dark"
+                        android:textSize="15dp"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</ScrollView>

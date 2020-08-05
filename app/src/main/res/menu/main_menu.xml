@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
+
     <item
-        android:id="@+id/profil"
-        android:icon="@drawable/ic_user_white"
-        android:title="Profil"
+        android:id="@+id/panier"
+        android:title="panier"
+        app:actionLayout="@layout/custom_action_item_layout_panier"
         app:showAsAction="always" />
+
     <item
-        android:id="@+id/notification"
-        android:title="Cart"
-        app:actionLayout="@layout/custom_action_item_layout"
-        app:showAsAction="always"/>
-    <item
-        android:id="@+id/location"
-        android:title="Ma position"
+        android:id="@+id/contact"
+        android:icon="@drawable/ic_user_white"
+        android:title="Nous contacter"
         app:showAsAction="never" />
     <item
-        android:id="@+id/logout"
-        android:icon="@drawable/ic_logout_white"
-        android:title="Se déconnecter"
+        android:icon="@drawable/ic_user_white"
+        android:title="Partager le lien"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/Exit"
+        android:icon="@drawable/ic_user_white"
+        android:title="Quitter l'application"
         app:showAsAction="never" />
 </menu>

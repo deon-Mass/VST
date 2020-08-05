@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt">
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
     <domain-config cleartextTrafficPermitted="true">
-        <domain includeSubdomains="true">clinnet.x-resolu.com</domain>
+        <!--<domain includeSubdomains="true">clinnet.x-resolu.com</domain>
         <domain includeSubdomains="true">192.168.137.1</domain>
-        <domain includeSubdomains="true">mobile.clinnet.org</domain>
+        <domain includeSubdomains="true">mobile.clinnet.org</domain>-->
+        <domain includeSubdomains="true">lesupreme.shop</domain>
     </domain-config>
 </network-security-config>

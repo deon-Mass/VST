@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+
+
+        <item
+            android:id="@+id/Vetements"
+            android:icon="@drawable/ic_settings_white"
+            android:title="Vêtements"/>
+        <item
+            android:id="@+id/Chaussures"
+            android:icon="@drawable/ic_settings_white"
+            android:title="Chaussures"/>
+
+        <item
+            android:id="@+id/aliments"
+            android:icon="@drawable/ic_settings_white"
+            android:title="Aliments"/>
+        <item
+            android:id="@+id/plus"
+            android:icon="@drawable/ic_settings_white"
+            android:title="Plus"/>
+    </group>
+</menu>

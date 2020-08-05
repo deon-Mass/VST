@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:soundEffectsEnabled="true"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="6dp"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:padding="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_margin="6dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/png"/>
+
+            <LinearLayout
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#CDE6E6E6"
+                android:layout_marginVertical="10dp"
+                android:layout_marginHorizontal="5dp"/>
+
+            <LinearLayout
+                android:padding="10dp"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font3"
+                    android:gravity="center"
+                    android:text="Titre de l'article"
+                    android:textColor="@color/dark"
+                    android:textSize="17dp" />
+
+                <TextView
+                    android:id="@+id/descripion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font5"
+                    android:gravity="center"
+                    android:text="@string/lorem_short"
+                    android:textColor="@color/dark"
+                    android:textSize="14dp"
+                    />
+
+
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:padding="0dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_weight="2"
+                        android:id="@+id/price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="500"
+                        android:textColor="@color/dark"
+                        android:fontFamily="@font/font3"
+                        android:textSize="15dp"
+                        />
+                    <ImageView
+                        android:visibility="gone"
+                        android:id="@+id/option"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_more_gris"/>
+
+
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="0dp"
+                            android:background="@drawable/corner_bleu_solid_bleu"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="1dp"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:padding="5dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:text="Qnt : "
+                                android:textColor="@color/white"
+                                android:textSize="13dp"
+                                />
+                            <TextView
+                                android:background="@drawable/corner_bleu_solid_transparent"
+                                android:id="@+id/pay_now"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="5 "
+                                android:paddingVertical="5dp"
+                                android:paddingHorizontal="15dp"
+                                android:fontFamily="@font/font6"
+                                android:textColor="@color/white"
+                                android:textSize="16dp"
+                                />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:layout_weight="2"
+                        android:id="@+id/PT"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="500"
+                        android:textColor="@color/dark"
+                        android:fontFamily="@font/font3"
+                        android:textSize="15dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <NumberPicker
+                    android:visibility="gone"
+                    android:id="@+id/qnt_picker"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="20dp"
+                    android:gravity="end"
+                    android:padding="5dp"
+                    android:background="@color/white"
+                    android:solidColor="@color/white"
+                    android:outlineSpotShadowColor="@color/white"
+                    android:divider="@android:color/transparent"
+                    android:scrollbars="horizontal"
+                    android:dividerPadding="10dp"
+                    android:showDividers="none"
+                    android:selectionDividerHeight="0dp"
+                    android:backgroundTintMode="src_over"
+                    android:soundEffectsEnabled="true"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
+    <ImageView
+        android:id="@+id/delete_panier"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentLeft="true"
+        android:elevation="2dp"
+        android:layout_marginLeft="5dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:background="@android:color/transparent"
+        android:padding="5dp"
+        android:src="@mipmap/ic_close"
+        />
+</RelativeLayout>

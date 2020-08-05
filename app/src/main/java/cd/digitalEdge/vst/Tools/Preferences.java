@@ -5,6 +5,10 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 
+import com.anychart.editor.Editor;
+import com.google.gson.Gson;
+
+import cd.digitalEdge.vst.Controllers.Config_preferences;
 import cd.digitalEdge.vst.Objects.Users;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -19,18 +23,6 @@ public class Preferences {
         Users columns = new Users();
         setUserPreferences(context,"FirstUse","null");
         setUserPreferences(context,columns.id,"null");
-        setUserPreferences(context,columns.role_id,"null");
-        setUserPreferences(context,columns.username,"null");
-        setUserPreferences(context,columns.email,"null");
-        setUserPreferences(context,columns.phone,"null");
-        setUserPreferences(context,columns.password,"null");
-        setUserPreferences(context,columns.avatar,"null");
-        setUserPreferences(context,columns.address,"null");
-        setUserPreferences(context,columns.gender,"null");
-        setUserPreferences(context,columns.office_id,"null");
-        setUserPreferences(context,columns.project_ids,"null");
-        setUserPreferences(context,columns.created_at,"null");
-        setUserPreferences(context,columns.status,"null");
     }
 
     public static void setUserPreferences(Context context, String key, String values){
@@ -49,4 +41,18 @@ public class Preferences {
         SharedPreferences mshPreferences = User_Preferences(context);
         return mshPreferences.getString(key,"");
     }
+
+    public static Users getCurrentUser(Context context){
+        Gson gson = new Gson();
+        String json = getUserPreferences(context,Config_preferences.CURRENT_USER);
+        Users user = gson.fromJson(json, Users.class);
+        return user;
+    }
+    public static void SaveCurrentUser(Context context ,Users user){
+        Gson gson = new Gson();
+        String json = gson.toJson(user);
+        setUserPreferences(context, Config_preferences.CURRENT_USER,json);
+    }
+
+
 }

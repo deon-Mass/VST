@@ -9,9 +9,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import cd.digitalEdge.vst.MainActivity;
 import cd.digitalEdge.vst.R;
-import cd.digitalEdge.vst.Views.Lists.List_clients;
+import cd.digitalEdge.vst.Views.Lists.Details_Article;
 
 public class Add_client extends AppCompatActivity {
 
@@ -37,7 +36,7 @@ public class Add_client extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent i  = new Intent(context, List_clients.class);
+        Intent i  = new Intent(context, Details_Article.class);
         startActivity(i);
         finish();
     }

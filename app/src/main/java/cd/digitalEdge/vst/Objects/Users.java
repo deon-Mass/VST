@@ -1,27 +1,22 @@
 package cd.digitalEdge.vst.Objects;
 
 public class Users {
-    public String id            = "id";
-    public String role_id       = "role_id";
-    public String name          = "name";
-    public String username      = "username";
-    public String email         = "email";
-    public String phone         = "phone";
-    public String password      = "password";
-    public String avatar        = "avatar";
-    public String address       = "address";
-    public String gender        = "gender";
-    public String office_id     = "office_id";
-    public String project_ids   = "project_ids";
-    public String created_at    = "created_at";
-    public String created_by    = "created_by";
-    public String updating      = "updating";
-    public String last_connexion = "last_connexion";
-    public String connexion_token= "connexion_token";
-    public String status         = "status";
+    public String id            =   "id";
+    public String role_id       =   "role_id";
+    public String name          =   "name";
+    public String email         =   "email";
+    public String avatar            =   "avatar";
+    public String email_verified_at         =   "email_verified_at";
+    public String password          =   "password";
+    public String remember_token            =   "remember_token";
+    public String banned_at         =   "banned_at";
+    public String settings          =   "settings";
+    public String verified          =   "verified";
+    public String verification_token            =   "verification_token";
+    public String created_at            =   "created_at";;
+    public String profile_id            =   "profile_id";
 
-    
-    
+
     public String getId() {
         return id;
     }
@@ -46,36 +41,12 @@ public class Users {
         this.name = name;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getAvatar() {
@@ -86,36 +57,60 @@ public class Users {
         this.avatar = avatar;
     }
 
-    public String getAddress() {
-        return address;
+    public String getEmail_verified_at() {
+        return email_verified_at;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setEmail_verified_at(String email_verified_at) {
+        this.email_verified_at = email_verified_at;
     }
 
-    public String getGender() {
-        return gender;
+    public String getPassword() {
+        return password;
     }
 
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getOffice_id() {
-        return office_id;
+    public String getRemember_token() {
+        return remember_token;
     }
 
-    public void setOffice_id(String office_id) {
-        this.office_id = office_id;
+    public void setRemember_token(String remember_token) {
+        this.remember_token = remember_token;
     }
 
-    public String getProject_ids() {
-        return project_ids;
+    public String getBanned_at() {
+        return banned_at;
     }
 
-    public void setProject_ids(String project_ids) {
-        this.project_ids = project_ids;
+    public void setBanned_at(String banned_at) {
+        this.banned_at = banned_at;
+    }
+
+    public String getSettings() {
+        return settings;
+    }
+
+    public void setSettings(String settings) {
+        this.settings = settings;
+    }
+
+    public String getVerified() {
+        return verified;
+    }
+
+    public void setVerified(String verified) {
+        this.verified = verified;
+    }
+
+    public String getVerification_token() {
+        return verification_token;
+    }
+
+    public void setVerification_token(String verification_token) {
+        this.verification_token = verification_token;
     }
 
     public String getCreated_at() {
@@ -126,50 +121,11 @@ public class Users {
         this.created_at = created_at;
     }
 
-    public String getCreated_by() {
-        return created_by;
+    public String getProfile_id() {
+        return profile_id;
     }
 
-    public void setCreated_by(String created_by) {
-        this.created_by = created_by;
+    public void setProfile_id(String profile_id) {
+        this.profile_id = profile_id;
     }
-
-    public String getUpdating() {
-        return updating;
-    }
-
-    public void setUpdating(String updating) {
-        this.updating = updating;
-    }
-
-    public String getLast_connexion() {
-        return last_connexion;
-    }
-
-    public void setLast_connexion(String last_connexion) {
-        this.last_connexion = last_connexion;
-    }
-
-    public String getConnexion_token() {
-        return connexion_token;
-    }
-
-    public void setConnexion_token(String connexion_token) {
-        this.connexion_token = connexion_token;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-
-
-
-
-
-
 }

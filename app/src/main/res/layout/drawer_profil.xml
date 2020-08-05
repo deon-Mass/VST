@@ -1,77 +1,323 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bac">
 
     <ScrollView
-        android:background="#D62196F3"
+        android:background="#ffff"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:padding="20dp"
-            android:paddingLeft="15dp"
+            android:gravity="center"
+            android:paddingVertical="30dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:src="@drawable/avatar2"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/userProfil"
+                    android:layout_centerInParent="true"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:src="@drawable/unknow"/>
+                <ProgressBar
+                    android:id="@+id/profil_progress"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerInParent="true"
+                    android:indeterminateTint="@color/dark2"/>
+
+            </RelativeLayout>
 
             <TextView
-                android:textStyle="bold"
+                android:id="@+id/username"
                 android:textSize="30dp"
-                android:textColor="#fff"
-                android:layout_width="wrap_content"
+                android:fontFamily="@font/font3"
+                android:textColor="@color/dark"
+                android:layout_width="match_parent"
+                android:gravity="center"
                 android:layout_height="wrap_content"
                 android:text="Deon Massadi"/>
 
+            <TextView
+                android:id="@+id/useremail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font5"
+                android:layout_marginHorizontal="30dp"
+                android:gravity="center"
+                android:text="@string/lorem_short"
+                android:textColor="@color/gris_dark"
+                android:textSize="13dp" />
 
             <LinearLayout
-                android:layout_marginLeft="1dp"
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:background="@color/white"
-                android:layout_marginVertical="10dp"/>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
 
-            <TextView
-                android:textSize="17dp"
-                android:textColor="#fff"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Téléphone : 814511083"/>
-            <TextView
-                android:textSize="17dp"
-                android:textColor="#fff"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Email : gedeonmass15@gmail.com"/>
+                <LinearLayout
+                    android:id="@+id/BTN_gerer"
+                    android:layout_weight="1"
+                    android:paddingVertical="10dp"
+                    android:paddingHorizontal="25dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <TextView
-                android:layout_marginTop="50dp"
-                android:textStyle="bold"
-                android:textSize="30dp"
-                android:textColor="#fff"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Adresse"/>
+                    <TextView
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font6"
+                        android:gravity="center"
+                        android:text="2"
+                        android:textColor="@color/dark"
+                        android:textSize="18dp" />
+                    <TextView
+                        android:drawableTop="@drawable/ic_gerer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font5"
+                        android:gravity="center"
+                        android:text="GERER"
+                        android:textColor="@color/gris_dark"
+                        android:textSize="13dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="30dp"
+                    android:background="#33000000"/>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:paddingVertical="10dp"
+                    android:paddingHorizontal="25dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <TextView
-                android:textSize="15dp"
-                android:textColor="#fff"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="N° 45 AV KISAKU"/>
-            <TextView
-                android:textSize="15dp"
-                android:textColor="#fff"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Quartier GOMBELE, Commune de Lemba"/>
+                    <TextView
+                        android:id="@+id/panier_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font6"
+                        android:gravity="center"
+                        android:text="0"
+                        android:textColor="@color/dark"
+                        android:textSize="18dp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font5"
+                        android:gravity="center"
+                        android:text="PANIER"
+                        android:textColor="@color/gris_dark"
+                        android:textSize="13dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="1dp"
+                    android:layout_height="30dp"
+                    android:background="#33000000"/>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:paddingVertical="10dp"
+                    android:paddingHorizontal="25dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font6"
+                        android:gravity="center"
+                        android:text="2"
+                        android:textColor="@color/dark"
+                        android:textSize="18dp" />
+                    <TextView
+                        android:id="@+id/blog"
+                        android:drawableTop="@drawable/ic_mail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font5"
+                        android:gravity="center"
+                        android:text="BLOG"
+                        android:textColor="@color/gris_dark"
+                        android:textSize="13dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:background="@drawable/barnier1"
+                android:layout_width="match_parent"
+                android:layout_height="165dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:background="#E4272C33"
+                    android:paddingVertical="20dp"
+                    android:paddingHorizontal="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/categorie"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font5"
+                        android:gravity="center"
+                        android:text="Catégories"
+                        android:drawableTop="@drawable/ic_home_gris"
+                        android:drawablePadding="0dp"
+                        android:textColor="@color/white"
+                        android:textSize="13dp" />
+
+                    <LinearLayout
+                        android:layout_marginHorizontal="5dp"
+                        android:layout_width="1dp"
+                        android:layout_height="30dp"
+                        android:background="#BEFFFFFF"/>
+
+                    <TextView
+                        android:id="@+id/panier"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font5"
+                        android:gravity="center"
+                        android:text="Mon panier"
+                        android:drawableTop="@drawable/ic_shopping_gris"
+                        android:drawablePadding="0dp"
+                        android:textColor="@color/white"
+                        android:textSize="13dp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center_vertical"
+                    android:background="#E4272C33"
+                    android:paddingVertical="20dp"
+                    android:paddingHorizontal="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font5"
+                        android:gravity="center"
+                        android:text="Acheter"
+                        android:drawableTop="@drawable/ic_product_white"
+                        android:drawablePadding="0dp"
+                        android:textColor="@color/white"
+                        android:textSize="13dp" />
+                    <LinearLayout
+                        android:layout_marginHorizontal="5dp"
+                        android:layout_width="1dp"
+                        android:layout_height="30dp"
+                        android:background="#BEFFFFFF"/>
+                    <TextView
+                        android:id="@+id/contact"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font5"
+                        android:gravity="center"
+                        android:text="Contacts"
+                        android:drawableTop="@drawable/ic_mail_white"
+                        android:drawablePadding="0dp"
+                        android:textColor="@color/white"
+                        android:textSize="13dp" />
+                    <LinearLayout
+                        android:layout_marginHorizontal="5dp"
+                        android:layout_width="1dp"
+                        android:layout_height="30dp"
+                        android:background="#BEFFFFFF"/>
+                    <TextView
+                        android:id="@+id/menu_params"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font5"
+                        android:gravity="center"
+                        android:text="Params"
+                        android:drawableTop="@drawable/ic_settings_white"
+                        android:drawablePadding="0dp"
+                        android:textColor="@color/white"
+                        android:textSize="13dp" />
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="visible"
+                android:paddingVertical="30dp"
+                android:paddingHorizontal="35dp"
+                android:orientation="vertical"
+                android:background="@color/background2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/log_out_in"
+                    android:layout_marginTop="10dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font3"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="10dp"
+                    android:paddingVertical="10dp"
+                    android:paddingHorizontal="30dp"
+                    android:background="@drawable/corner_dark_solid_dark"
+                    android:text="Se déconnecter"
+                    android:drawableLeft="@drawable/ic_logout_white"
+                    android:drawablePadding="10dp"
+                    android:textColor="@color/white"
+                    android:textSize="15dp"
+                    />
+                <TextView
+                    android:id="@+id/exit"
+                    android:layout_marginTop="30dp"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font6"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:layout_marginHorizontal="10dp"
+                    android:paddingVertical="10dp"
+                    android:paddingHorizontal="30dp"
+                    android:background="@drawable/corner_bleu_solid_transparent"
+                    android:text="Quitter l'application"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="11dp"
+                    />
+            </LinearLayout>
+
 
         </LinearLayout>
 

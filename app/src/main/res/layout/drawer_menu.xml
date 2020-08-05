@@ -1,40 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
+    android:background="@color/dark2"
     android:layout_height="match_parent">
 
-    <com.google.android.material.navigation.NavigationView
-        app:itemTextAppearance="@style/NavigationViewStyle"
-        android:background="@color/dark"
-        android:layout_gravity="start"
-        android:id="@+id/navigationView"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        app:itemTextColor="@color/white"
-        app:itemIconSize="25dp"
-        app:itemIconTint="@color/colorPrimary"
-        app:itemIconPadding="@dimen/bbn_badge_size"
-        app:menu="@menu/navigation_menu"
-        app:headerLayout="@layout/drawer_header_menu">
+        android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
+            android:drawableLeft="@drawable/ic_product_white"
+            android:background="@drawable/corner_left_radius_orange"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:id="@+id/index_letter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:clickable="true"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/footer_item_1"
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:gravity="center"
-                android:textSize="12dp"
-                android:textColor="@color/green"
-                android:text="All right reserved" />
-        </LinearLayout>
-    </com.google.android.material.navigation.NavigationView>
+            android:fontFamily="@font/font3"
+            android:gravity="center_vertical"
+            android:textStyle="bold"
+            android:text="@string/supreme_store"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            />
 
-</LinearLayout>
+        <ListView
+            android:layout_marginTop="10dp"
+            android:divider="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/listCat"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:elevation="10dp"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/progress_data"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/corner_left_radius_orange"
+        android:layout_marginLeft="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="15dp"
+        android:gravity="center_vertical">
+
+        <ProgressBar
+            android:indeterminateTint="@color/white"
+            android:layout_width="30dp"
+            android:layout_height="30dp"/>
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/font6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Loading data ..."/>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name"><b>Vendis</b> Sales tracker</string>
+    <string name="app_name"><b>Suprême</b> Shop</string>
+    <string name="supreme_store">Catégories</string>
+    <string name="app_name2">Bienvenu chez <br /><b>Suprême Shop,   </b> </string>
     <string name="lorem_long">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -10,10 +12,15 @@
     </string>
     <string name="lorem_semin_long">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut
+        tempor incididunt
     </string>
     <string name="lorem_short">
         Lorem ipsum dolor sit amet, consectetur adipisicing.
+    </string>
+    <string name="lorem_contact">
+        Vous pouvez entrer en contac avec notre équipe à travers différentes coordonnées de contact ci-dessous partagées.<br/>
+        Laissez-nous un message ou contactez-nous par téléphone. Notre équipe commercial reste disponible 24h/24 pour répondre à vos besoins.
+
     </string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>

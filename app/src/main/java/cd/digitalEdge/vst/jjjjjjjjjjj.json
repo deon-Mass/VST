@@ -1,0 +1,102 @@
+{"products":[
+  {
+    "id":1,
+    "name":"Chemise pr\u00eat \u00e0 porter",
+    "slug":"chemise-pret-a-porter",
+    "images":"[\"properties\\\/July2020\\\/EBt5duo6bTuxbHtdMzYS.jpg\"]",
+    "description":"Blacnhe",
+    "price":"10",
+    "keywords":"chemise Homme",
+    "phone":"+243824730332",
+    "website":null,
+    "email":"johnclevernzasi@gmail.com",
+    "status":"published",
+    "availability":"available",
+    "user_id":"1",
+    "condition_id":"1",
+    "category_id":"20",
+    "created_at":"2020-07-28 15:38:58",
+    "updated_at":"2020-07-28 15:38:58",
+    "stock":"10",
+    "tva_status":"0",
+    "partners_fee_id":"2",
+    "user":{
+      "id":1,
+      "role_id":"1",
+      "name":"Supreme Shop",
+      "email":"admin@admin.com",
+      "avatar":"users\/November2019\/MgMgAthaK3NIDNomVAxM.jpg",
+      "email_verified_at":null,
+      "banned_at":null,
+      "settings":{"locale":"fr"},
+      "verified":"1",
+      "verification_token":null,
+      "created_at":"2019-10-22 12:05:08",
+      "updated_at":"2020-06-04 13:30:38",
+      "profile_id":"1",
+      "verified_account":"1",
+    },
+    "category":{
+      "id":20,
+      "parent_id":"6",
+      "order":"5",
+      "name":"Chauffage, climatisation et air",
+      "slug":"chauffage-climatisation-et-air",
+      "created_at":"2020-06-02 00:50:14",
+      "updated_at":"2020-06-02 00:51:21",
+    },
+    "ratings":[]
+  }
+]}
+
+
+
+
+{"categories": [
+  {
+    "id":5,
+    "parent_id":"1",
+    "order":"4",
+    "name":"Appareils photos et camescope",
+    "slug":"appareils-photos-et-camescope",
+    "created_at":"2020-06-02 00:35:58",
+    "updated_at":"2020-06-02 00:35:58",
+  },
+  {"id":6,"parent_id":"1","order":"4","name":"Electrom\u00e9nager","slug":"electromenager","created_at":"2020-06-02 00:36:39",
+    "updated_at":"2020-06-02 00:36:39"},{"id":7,"parent_id":"1","order":"4","name":"Mat\u00e9riels audio et vid\u00e9o","slug":"materiels-audio-et-video",
+    "created_at":"2020-06-02 00:37:05","updated_at":"2020-06-02 00:37:05"},
+  {"id":8,"parent_id":"1","order":"4","name":"Articles pour b\u00e9b\u00e9","slug":"articles-pour-bebe","created_at":"2020-06-02 00:38:50",
+    "updated_at":"2020-06-02 00:38:50"},{"id":9,"parent_id":"1","order":"4","name":"V\u00eatements et acc\u00e9ssoires","slug":"vetements-et-accessoires",
+    "created_at":"2020-06-02 00:39:30","updated_at":"2020-06-02 00:39:30"},{"id":10,"parent_id":"1","order":"4","name":"Instruments de musiques",
+    "slug":"instruments-de-musiques","created_at":"2020-06-02 00:40:56","updated_at":"2020-06-02 00:40:56"},{"id":11,"parent_id":"1","order":"4","name":"Articles pour maison","slug":"articles-pour-maison","created_at":"2020-06-02 00:41:46","updated_at":"2020-06-02 00:41:46"},{"id":12,"parent_id":"1","order":"4","name":"Outils informatiques et r\u00e9seaux","slug":"outils-informatiques-et-reseaux","created_at":"2020-06-02 00:42:35","updated_at":"2020-06-09 12:23:20"},{"id":13,"parent_id":"1","order":"4","name":"Jardins et Terrasses","slug":"jardins-et-terrasses","created_at":"2020-06-02 00:42:58","updated_at":"2020-06-02 00:42:58"},{"id":14,"parent_id":"1","order":"4","name":"Immobilier","slug":"immobilier","created_at":"2020-06-02 00:44:14","updated_at":"2020-06-02 00:44:14"},{"id":15,"parent_id":"1","order":"4","name":"Bijoux et montres","slug":"bijoux-et-montres","created_at":"2020-06-02 00:45:24","updated_at":"2020-06-02 00:45:24"},{"id":16,"parent_id":"1","order":"4","name":"Produits de beaut\u00e9 et parfums","slug":"produits-de-beaute-et-parfums","created_at":"2020-06-02 00:45:46","updated_at":"2020-06-02 00:45:46"},{"id":17,"parent_id":"1","order":"4","name":"T\u00e9l\u00e9phonie et mobilit\u00e9","slug":"telephonie-et-mobilite","created_at":"2020-06-02 00:47:37","updated_at":"2020-06-02 00:47:37"},{"id":18,"parent_id":"1","order":"4","name":"Articles de loisir cr\u00e9atifs","slug":"articles-de-loisir-creatifs","created_at":"2020-06-02 00:48:05","updated_at":"2020-06-02 00:48:05"},{"id":71,"parent_id":"1","order":"4","name":"C\u00e9ramiques et Verres","slug":"ceramiques-et-verres","created_at":"2020-06-02 02:14:53","updated_at":"2020-06-02 02:14:53"},{"id":98,"parent_id":"1","order":"4","name":"Chaussures et accessoires","slug":"chaussures-et-accessoires","created_at":"2020-06-02 03:13:40","updated_at":"2020-06-02 03:13:40"}]}
+
+
+
+{"results":[
+  {"id":1,"name":"Chemise pr\u00eat \u00e0 porter","slug":"chemise-pret-a-porter","images":"[\"properties\\\/July2020\\\/EBt5duo6bTuxbHtdMzYS.jpg\"]","description":"Blacnhe","price":"10","keywords":"chemise Homme","phone":"+243824730332","website":null,"email":"johnclevernzasi@gmail.com","status":"published","availability":"available","user_id":"1","condition_id":"1","category_id":"20","created_at":"2020-07-28 15:38:58","updated_at":"2020-07-28 15:38:58","stock":"10","tva_status":"0","partners_fee_id":"2","relevance":"450","category":{"id":20,"parent_id":"6","order":"5","name":"Chauffage, climatisation et air","slug":"chauffage-climatisation-et-air","created_at":"2020-06-02 00:50:14","updated_at":"2020-06-02 00:51:21"},"user":{"id":1,"role_id":"1","name":"Supreme Shop","email":"admin@admin.com","avatar":"users\/November2019\/MgMgAthaK3NIDNomVAxM.jpg","email_verified_at":null,"banned_at":null,"settings":{"locale":"fr"},"verified":"1","verification_token":null,"created_at":"2019-10-22 12:05:08","updated_at":"2020-06-04 13:30:38","profile_id":"1","verified_account":"1"},"favorites":[],"ratings":[],
+  }
+]}
+
+
+{"user":
+  {
+    "id":1,
+    "role_id":"1",
+    "name":"Supreme Shop",
+    "email":"admin@admin.com",
+    "avatar":"users\/November2019\/MgMgAthaK3NIDNomVAxM.jpg",
+    "email_verified_at":null,
+    "banned_at":null,
+    "settings":{"locale":"fr"},
+    "verified":"1",
+    "verification_token":null,
+    "created_at":"2019-10-22 12:05:08",
+    "updated_at":"2020-06-04 13:30:38",
+    "profile_id":"1",
+    "verified_account":"1",
+  },
+}
+
+
+I/PRODUCT_GET_ERROR: near "order": syntax error (code 1 SQLITE_ERROR): ,
+while compiling: create table CATEGORIES (id varchar(25) primary key, name varchar(500),slug varchar(500),order varchar(500),created_at varchar(500) )

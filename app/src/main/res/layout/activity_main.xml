@@ -9,15 +9,15 @@
     tools:context=".MainActivity">
 
     <include
-        layout="@layout/content_main"
+        layout="@layout/content_main3"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-
     <LinearLayout
-        android:layout_gravity="start"
-        android:layout_width="match_parent"
-        android:gravity="top"
+        android:animateLayoutChanges="true"
+        android:layout_gravity="end"
+        android:layout_width="200dp"
+        android:background="@color/white"
         android:layout_height="match_parent">
 
         <include layout="@layout/drawer_menu"/>
@@ -25,7 +25,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_gravity="end"
+        android:layout_gravity="start"
         android:layout_width="match_parent"
         android:gravity="top"
         android:layout_height="match_parent">

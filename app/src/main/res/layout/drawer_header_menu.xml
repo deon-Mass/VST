@@ -2,42 +2,18 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="@drawable/bac"
-    android:layout_height="200dp">
+    android:background="@color/white"
+    android:layout_height="wrap_content">
 
-    <LinearLayout
+    <TextView
         android:padding="10dp"
-        android:background="#B0000000"
-        android:paddingLeft="15dp"
+        android:textSize="17dp"
+        android:textColor="@color/dark2"
+        android:gravity="start"
+        android:fontFamily="@font/font5"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <ImageView
-            android:layout_weight="2"
-            android:layout_width="150dp"
-            android:layout_height="100dp"
-            android:src="@drawable/vendis2"/>
-
-        <TextView
-            android:textSize="20dp"
-            android:textColor="@color/colorPrimary"
-            android:gravity="start"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Sales Tracker"/>
-
-        <TextView
-            android:layout_marginBottom="20dp"
-            android:textSize="12dp"
-            android:textColor="@color/gris_dark"
-            android:gravity="start"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/lorem_semin_long"/>
-
-
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:text="@string/supreme_store"/>
 
 
 </ScrollView>

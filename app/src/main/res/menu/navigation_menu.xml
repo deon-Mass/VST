@@ -3,19 +3,19 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/dr_project"
+            android:id="@+id/dr_home"
             android:icon="@drawable/ic_product_white"
-            android:title="Projets"/>
+            android:title="Accueil"/>
 
         <item
-            android:id="@+id/dr_commerciaux"
+            android:id="@+id/dr_acheter"
             android:icon="@drawable/ic_user_white"
-            android:title="Commerciaux"/>
+            android:title="Acheter"/>
 
         <item
-            android:id="@+id/dr_client"
-            android:icon="@drawable/ic_client_white"
-            android:title="Base clients"/>
+            android:id="@+id/dr_panier"
+            android:icon="@drawable/ic_shopping_gris"
+            android:title="Panier"/>
         <item
             android:id="@+id/dr_params"
             android:icon="@drawable/ic_settings_white"

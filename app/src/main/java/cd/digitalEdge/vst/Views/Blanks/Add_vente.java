@@ -14,10 +14,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import cd.digitalEdge.vst.MainActivity;
 import cd.digitalEdge.vst.R;
 import cd.digitalEdge.vst.Tools.Tool;
-import cd.digitalEdge.vst.Views.Client_Account;
+import cd.digitalEdge.vst.Views.Gerer;
 
 public class Add_vente extends AppCompatActivity {
 
@@ -60,7 +59,7 @@ public class Add_vente extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent i  = new Intent(context, Client_Account.class);
+        Intent i  = new Intent(context, Gerer.class);
         i.putExtra("client_name", getIntent().getExtras().getString("client_name"));
         startActivity(i);
         finish();

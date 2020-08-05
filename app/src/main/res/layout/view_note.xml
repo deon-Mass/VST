@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/NestedScrollView"
+    android:layout_width="match_parent"
+    android:layout_gravity="center"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="30dp"
+    app:cardBackgroundColor="@android:color/transparent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font6"
+        android:gravity="center"
+        android:textColor="@color/dark"
+        android:text="Noter le produit"
+        android:textSize="20dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font3"
+        android:gravity="center"
+        android:text="Veuillez donner votre avis en notant ce produit"
+        android:textSize="17dp"
+        />
+    <RatingBar
+        android:id="@+id/note"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:max="5"/>
+
+    <TextView
+        android:id="@+id/note_prod"
+        android:textColor="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font6"
+        android:gravity="center"
+        android:text="0.0/5"
+        android:textSize="17dp"
+        />
+    <com.google.android.material.textfield.TextInputLayout
+        android:hint="Decrivez votre avis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/rating_body"
+            android:gravity="top"
+            android:inputType="text"
+            android:textSize="14dp"
+            android:fontFamily="@font/font3"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:padding="15dp"
+            android:background="@drawable/corner_gris_transparent"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <CheckBox
+        android:id="@+id/recommand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:fontFamily="@font/font3"
+        android:textColor="@color/dark2"
+        android:text="Avez-vous été recommandé ?"/>
+
+</LinearLayout>

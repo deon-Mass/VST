@@ -11,20 +11,18 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Random;
 
-import cd.digitalEdge.vst.Objects.Customers;
+import cd.digitalEdge.vst.Objects.Categories;
 import cd.digitalEdge.vst.R;
-import cd.digitalEdge.vst.Tools.Tool;
 
 public class Adaptor_Client_list extends BaseAdapter {
 
     Context context;
-    ArrayList<Customers> DATAS;
+    ArrayList<Categories> DATAS;
 
-    public Adaptor_Client_list(Context context, ArrayList<Customers> DATAS) {
+    public Adaptor_Client_list(Context context, ArrayList<Categories> DATAS) {
         this.context = context;
         this.DATAS = DATAS;
     }
@@ -42,16 +40,16 @@ public class Adaptor_Client_list extends BaseAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        View convertView2 = LayoutInflater.from(this.context).inflate(R.layout.model_client_list, null);
+        View convertView2 = LayoutInflater.from(this.context).inflate(R.layout.model_panier_item, null);
         TextView index_letter = convertView2.findViewById(R.id.index_letter);
         TextView client_name  = convertView2.findViewById(R.id.client_name);
         TextView detail  = convertView2.findViewById(R.id.detail);
         ImageView option  = convertView2.findViewById(R.id.option);
 
-        Customers data = DATAS.get(position);
+        Categories data = DATAS.get(position);
 
         client_name.setText(data.getName());
-        detail.setText(data.getAddress()+"\n"+ data.getPhone());
+        //detail.setText(data.getAddress()+"\n"+ data.getPhone());
 
         index_letter.setText(data.getName().substring(0,1));
         int r = new Random().nextInt(4);

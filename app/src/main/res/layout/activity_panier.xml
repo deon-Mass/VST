@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Views.Lists.Panier">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:soundEffectsEnabled="true"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        app:cardBackgroundColor="@color/dark2"
+        android:gravity="center_vertical"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="6dp"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="20dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font3"
+                    android:gravity="start"
+                    android:text="Tot Article :"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/prodcount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font3"
+                    android:gravity="end"
+                    android:text="3"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="20dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font3"
+                    android:gravity="start"
+                    android:text="Prix Total :"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
+                <TextView
+                    android:id="@+id/PT"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font6"
+                    android:gravity="end"
+                    android:text="3000"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
+            </LinearLayout>
+            
+        </LinearLayout>
+        
+    </androidx.cardview.widget.CardView>
+        
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/swiper">
+        <ListView
+            android:divider="@android:color/transparent"
+            tools:listfooter="@layout/footer_panier"
+            android:numColumns="auto_fit"
+            android:id="@+id/panier_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+
+</LinearLayout>

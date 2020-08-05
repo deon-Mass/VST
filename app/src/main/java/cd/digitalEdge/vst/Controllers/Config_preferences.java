@@ -8,4 +8,5 @@ public class Config_preferences {
     public static String PRICE = "PRICE";
     public static String TAUX = "TAUX";
     public static String table_name = "chats";
+    public static String CURRENT_USER = "currentUser";
 }
