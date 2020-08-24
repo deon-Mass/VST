@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".Views.Blanks.Checkout_command">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:soundEffectsEnabled="true"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        app:cardBackgroundColor="@color/dark2"
+        android:gravity="center_vertical"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="6dp"
+        android:layout_height="wrap_content">
+        
+        <LinearLayout
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="20dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font3"
+                    android:gravity="start"
+                    android:text="Tot Article :"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/prodcount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font3"
+                    android:gravity="end"
+                    android:text="3"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="20dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font3"
+                    android:gravity="start"
+                    android:text="Prix Total :"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
+                <TextView
+                    android:id="@+id/PT"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font6"
+                    android:gravity="end"
+                    android:text="3000"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_marginBottom="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:id="@+id/page1"
+                android:paddingVertical="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:paddingHorizontal="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font3"
+                        android:paddingVertical="0dp"
+                        android:text="Informations personnelles"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20dp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:hint="Prénom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/prenom"
+                            android:singleLine="true"
+                            android:inputType="text"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/font3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="13dp"
+                            android:background="@drawable/corner_gris_transparent"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:hint="Nom"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/nom"
+                            android:singleLine="true"
+                            android:inputType="text"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/font3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="13dp"
+                            android:background="@drawable/corner_gris_transparent"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:hint="Email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/email"
+                            android:singleLine="true"
+                            android:inputType="textEmailAddress"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/font3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp"
+                            android:background="@drawable/corner_gris_transparent"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:hint="Téléphone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/phone"
+                            android:singleLine="true"
+                            android:inputType="number"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/font3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="15dp"
+                            android:background="@drawable/corner_gris_transparent"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <LinearLayout
+                        android:paddingVertical="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:paddingVertical="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/font3"
+                                android:gravity="start"
+                                android:text="Pays"
+                                android:textColor="@color/dark"
+                                android:textSize="15dp" />
+
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <Spinner
+                                    android:layout_weight="1"
+                                    android:id="@+id/categories"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="10dp"
+                                    android:background="@drawable/corner_gris_transparent"
+                                    android:entries="@array/Selected"/>
+                                <ProgressBar
+                                    android:padding="8dp"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:paddingVertical="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/font3"
+                                android:gravity="start"
+                                android:text="Ville"
+                                android:textColor="@color/dark"
+                                android:textSize="15dp" />
+
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <Spinner
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="10dp"
+                                    android:background="@drawable/corner_gris_transparent"
+                                    android:entries="@array/Selected"/>
+                                <ProgressBar
+                                    android:padding="8dp"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:paddingVertical="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/font3"
+                                android:gravity="start"
+                                android:text="Région / Commune "
+                                android:textColor="@color/dark"
+                                android:textSize="15dp" />
+
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <Spinner
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="10dp"
+                                    android:background="@drawable/corner_gris_transparent"
+                                    android:entries="@array/Selected"/>
+                                <ProgressBar
+                                    android:padding="8dp"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:paddingVertical="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/font3"
+                                android:gravity="start"
+                                android:text="Quartier"
+                                android:textColor="@color/dark"
+                                android:textSize="15dp" />
+
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
+                                <Spinner
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="10dp"
+                                    android:background="@drawable/corner_gris_transparent"
+                                    android:entries="@array/Selected"/>
+                                <ProgressBar
+                                    android:padding="8dp"
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font3"
+                        android:paddingVertical="0dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Informations complementaire"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20dp" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:hint="Note de commande"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/note_commande"
+                            android:singleLine="true"
+                            android:inputType="text"
+                            android:textSize="15dp"
+                            android:fontFamily="@font/font3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="13dp"
+                            android:background="@drawable/corner_gris_transparent"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+            <ScrollView
+                android:id="@+id/page2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <TextView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font3"
+                        android:paddingVertical="0dp"
+                        android:text="Mode de paiement"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20dp" />
+                    <LinearLayout
+                        android:paddingVertical="10dp"
+                        android:background="@drawable/corner_gris_transparent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:padding="10dp"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_marginHorizontal="5dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:src="@drawable/airtel"
+                                android:layout_weight="1"/>
+                            <ImageView
+                                android:layout_marginHorizontal="5dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:src="@drawable/mpesa"
+                                android:layout_weight="1"/>
+                            <ImageView
+                                android:layout_marginHorizontal="5dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:src="@drawable/orangemoney"
+                                android:layout_weight="1"/>
+
+                        </LinearLayout>
+                        <LinearLayout
+                            android:paddingHorizontal="20dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/font3"
+                                android:gravity="start"
+                                android:text="Opérateur"
+                                android:textColor="@color/dark"
+                                android:textSize="15dp" />
+
+                            <LinearLayout
+                                android:gravity="center_vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <Spinner
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="10dp"
+                                    android:background="@drawable/corner_gris_transparent"
+                                    android:entries="@array/Selected"/>
+
+
+                                <com.google.android.material.textfield.TextInputLayout
+                                    android:hint="Numéro référence de la transaction"
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <EditText
+                                        android:layout_marginTop="5dp"
+                                        android:singleLine="true"
+                                        android:inputType="text"
+                                        android:fontFamily="@font/font3"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:padding="10dp"
+                                        android:background="@drawable/corner_gris_transparent"
+                                        />
+
+                                </com.google.android.material.textfield.TextInputLayout>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/BTN_btn"
+            android:paddingHorizontal="30dp"
+            android:paddingVertical="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Suivant"
+            android:textColor="@color/white"
+            android:fontFamily="@font/font6"
+            android:background="@drawable/corner_bleu_solid_bleu"
+            android:layout_centerInParent="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"/>
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

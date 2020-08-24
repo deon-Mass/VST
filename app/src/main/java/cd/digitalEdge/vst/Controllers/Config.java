@@ -45,9 +45,29 @@ public class Config {
     // recupère la liste des catégories du blog https://domaine.com/api/posts/categories
     public static String GET_CAT = GET_POST.concat("/categories");
 
+    // TODO : CONTACT
+    public static String SEND_IN_CONTACT = ROOT+"contact/store";
+
+    // TODO : Couleur
+    public static String GET_COLORS = ROOT+"colors";
+
+    // TODO : Etat
+    public static String GET_ETAT = ROOT+"types";
+
+    // TODO : Commandes
+    public static String GET_COMMAND = ROOT+"user/orders/";
+
+    // TODO : WALLET
+    public static String GET_WALLET = ROOT+"user/wallet/";
+    // TODO : IMAGE STORE
+    public static String SEND_IMG = ROOT+"products/store";
 
 
-
+    // TODO : BIENS ET FAVORIS
+    public static String GET_GOODS = ROOT+"user/biens/"; // on POST : my ID  https://lesupreme.shop/api/user/orders/1 comme id directement
+    public static String GET_FAVORI = ROOT+"user/biens/favoris/"; // on POST : my ID
+    public static String SET_FAVORI = ROOT+"user/biens/favoris/"; // on POST : MyId, ID, product
+    public static String SET_IS_FAVORI = ROOT+"user/biens/is-favorited/"; // on POST : MyId, ID, product
 
     /**
 

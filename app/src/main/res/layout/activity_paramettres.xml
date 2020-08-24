@@ -8,9 +8,8 @@
     android:background="@color/white"
     tools:context=".Views.Paramettres">
 
-
     <TextView
-        android:id="@+id/index_letter"
+        android:id="@+id/profil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/font3"
@@ -29,6 +28,7 @@
         android:background="#BCAFAEAE"/>
 
     <TextView
+        android:id="@+id/clearPanier"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/font3"
@@ -46,13 +46,14 @@
         android:background="#BCAFAEAE"/>
 
     <TextView
+        android:id="@+id/clearCache"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/font3"
         android:gravity="start"
         android:paddingVertical="10dp"
         android:paddingHorizontal="30dp"
-        android:text="Nous appeler"
+        android:text="Vider les caches"
         android:textColor="@color/black"
         android:textSize="20dp"
         />
@@ -63,6 +64,25 @@
         android:background="#BCAFAEAE"/>
 
     <TextView
+        android:id="@+id/contact_us"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/font3"
+        android:gravity="start"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="30dp"
+        android:text="Nous contacter"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        />
+    <LinearLayout
+        android:layout_marginHorizontal="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#BCAFAEAE"/>
+
+    <TextView
+        android:id="@+id/about"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/font3"

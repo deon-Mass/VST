@@ -20,15 +20,14 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import cd.digitalEdge.vst.Adaptors.Adaptor_Articles_list;
 import cd.digitalEdge.vst.Adaptors.Adaptor_recherche_list;
 import cd.digitalEdge.vst.Adaptors.Slides.SlideAdapter_home;
-import cd.digitalEdge.vst.Controllers.Offline.ExecuteUpdate;
+import cd.digitalEdge.vst.Controllers.Config;
+import cd.digitalEdge.vst.MainActivity;
 import cd.digitalEdge.vst.Objects.Articles;
 import cd.digitalEdge.vst.R;
-import cd.digitalEdge.vst.Tools.Constants;
 import cd.digitalEdge.vst.Tools.Utils;
 
 public class Details_Article extends AppCompatActivity {
@@ -51,7 +50,7 @@ public class Details_Article extends AppCompatActivity {
     int[] layouts;
     private SlideAdapter_home myadapter;
 
-    TextView name,slut,description,price,availability,stock, qnt, addtocard, Noter;
+    TextView name,slut,description,price,availability,stock, qnt, addtocard, Noter,addtofavorit;
 
     int turn = 0;
 
@@ -60,7 +59,7 @@ public class Details_Article extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_clients);
+        setContentView(R.layout.activity_details);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Détails article");
         //getSupportActionBar().hide();
@@ -73,11 +72,7 @@ public class Details_Article extends AppCompatActivity {
 
         INIT_COMPONENT();
         INIT_COMPONENT_SLIDE();
-
-
-
     }
-
 
     private void INIT_COMPONENT() {
         name = findViewById(R.id.name);
@@ -88,6 +83,7 @@ public class Details_Article extends AppCompatActivity {
         stock = findViewById(R.id.stock);
         qnt = findViewById(R.id.qnt);
         addtocard = findViewById(R.id.addtocard);
+        addtofavorit = findViewById(R.id.addtofavorit);
         Noter = findViewById(R.id.Noter);
 
         name.setText(Article.getName());
@@ -97,6 +93,9 @@ public class Details_Article extends AppCompatActivity {
         stock.setText(Article.getStock()+" en stock");
         if (Article.getAvailability().equals("available")) availability.setText("Disponible");
         else availability.setText("indisponible");
+
+
+
     }
     ViewPager.OnPageChangeListener viewlistener = new ViewPager.OnPageChangeListener() {
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -132,7 +131,12 @@ public class Details_Article extends AppCompatActivity {
         this.liner = (LinearLayout) findViewById(R.id.dots);
         this.next = (Button) findViewById(R.id.nextBtn);
         this.back = (Button) findViewById(R.id.backBtn);
-        this.myadapter = new SlideAdapter_home(context);
+
+        String a =Article.getImages().substring(1, Article.getImages().length()-1);
+        String[] imgs = a.split(",");
+        //String url = Config.ROOT_img.concat(imgs[0].substring(1,imgs[0].length()-1));
+
+        this.myadapter = new SlideAdapter_home(context, imgs);
         this.viewpager.setAdapter(this.myadapter);
         adddots(0);
         this.viewpager.addOnPageChangeListener(this.viewlistener);
@@ -146,8 +150,8 @@ public class Details_Article extends AppCompatActivity {
                 viewpager.setCurrentItem(mCureentPage - 1);
             }
         });
-        next.setVisibility(View.GONE);
-        back.setVisibility(View.GONE);
+        //next.setVisibility(View.GONE);
+        //back.setVisibility(View.GONE);
     }
 
     public void adddots(int i) {
@@ -205,6 +209,12 @@ public class Details_Article extends AppCompatActivity {
 
             }
         });
+        addtofavorit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Utils().SaveToFavoris(context, Article.getId());
+            }
+        });
         Noter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -225,7 +235,10 @@ public class Details_Article extends AppCompatActivity {
         Intent i;
         if (getIntent().hasExtra("source")){
             source = getIntent().getExtras().getString("source");
-            if (source.equals("P")) i = new Intent(context, Panier.class);
+            if (source.equals("Panier")) i = new Intent(context, Panier.class);
+            else if (source.equals("Home")) i = new Intent(context, MainActivity.class);
+            else if (source.equals("favoris")) i = new Intent(context, Favoris.class);
+            else if (source.equals("biens")) i = new Intent(context, Biens.class);
             else i = new Intent(context, Recherche.class);
         }else{
             i = new Intent(context, Recherche.class);

@@ -6,15 +6,21 @@
         <item>Item</item>
         <item>Item</item>
     </string-array>
+    <string-array name="Selected">
+        <item>- Selectionnez -</item>
+        <item>Item</item>
+        <item>Item</item>
+        <item>Item</item>
+    </string-array>
 
     <string-array name="data2">
-        <item>- Commercial -</item>
+        <item>- Etat de votre bien -</item>
         <item>Item</item>
         <item>Item</item>
         <item>Item</item>
     </string-array>
     <string-array name="data3">
-        <item>- Region -</item>
+        <item>- Catégorie -</item>
         <item>Item</item>
         <item>Item</item>
         <item>Item</item>

@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:background="@color/white"
     android:padding="10dp"
-    tools:context=".Views.Contacts">
+    tools:context=".Views.Blanks.Contacts">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,9 +34,10 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/nom"
                     android:singleLine="true"
                     android:inputType="text"
-                    android:textSize="14dp"
+                    android:textSize="15dp"
                     android:fontFamily="@font/font3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -51,9 +52,10 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/email"
                     android:singleLine="true"
                     android:inputType="textEmailAddress"
-                    android:textSize="14dp"
+                    android:textSize="15dp"
                     android:fontFamily="@font/font3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -63,14 +65,15 @@
 
             </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.textfield.TextInputLayout
-                android:hint="Votre Syjet"
+                android:hint="Votre Sujet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/sujet"
                     android:singleLine="true"
                     android:inputType="text"
-                    android:textSize="14dp"
+                    android:textSize="15dp"
                     android:fontFamily="@font/font3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -85,18 +88,20 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/message"
                     android:gravity="top"
                     android:inputType="text"
-                    android:textSize="14dp"
+                    android:textSize="15dp"
                     android:fontFamily="@font/font3"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="150dp"
                     android:padding="15dp"
                     android:background="@drawable/corner_gris_transparent"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
             <TextView
+                android:id="@+id/BTN_send"
                 android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

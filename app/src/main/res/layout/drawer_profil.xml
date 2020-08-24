@@ -148,7 +148,7 @@
                         android:textSize="18dp" />
                     <TextView
                         android:id="@+id/blog"
-                        android:drawableTop="@drawable/ic_mail"
+                        android:drawableTop="@drawable/ic_blog_white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/font5"

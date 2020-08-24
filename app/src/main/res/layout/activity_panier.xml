@@ -84,12 +84,11 @@
         </LinearLayout>
         
     </androidx.cardview.widget.CardView>
-        
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/swiper">
+        android:layout_height="match_parent">
+
         <ListView
             android:divider="@android:color/transparent"
             tools:listfooter="@layout/footer_panier"
@@ -97,7 +96,35 @@
             android:id="@+id/panier_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <LinearLayout
+            android:elevation="10dp"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/progress_data"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/corner_left_radius_orange"
+            android:layout_marginLeft="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp"
+            android:gravity="center_vertical">
+
+            <ProgressBar
+                android:indeterminateTint="@color/white"
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/font6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Loading data ..."/>
+        </LinearLayout>
+
+    </RelativeLayout>
 
 
 

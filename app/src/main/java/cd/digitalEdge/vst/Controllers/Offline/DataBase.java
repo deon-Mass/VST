@@ -19,6 +19,8 @@ public class DataBase extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(Tables_queries_methods.create_table_Article());
         db.execSQL(Tables_queries_methods.create_table_Categorie());
+        db.execSQL(Tables_queries_methods.create_table_Colors());
+        db.execSQL(Tables_queries_methods.create_table_Etat());
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -26,6 +28,8 @@ public class DataBase extends SQLiteOpenHelper {
         try {
             db.execSQL(str2 + Constants.ARTICLE +" ;");
             db.execSQL(str2 + Constants.CATEGORIES +" ;");
+            db.execSQL(str2 + Constants.COLORS +" ;");
+            db.execSQL(str2 + Constants.ETATS +" ;");
         } catch (Exception e) {
             e.printStackTrace();
         }

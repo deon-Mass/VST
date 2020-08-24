@@ -12,26 +12,36 @@ import cd.digitalEdge.vst.Tools.Constants;
 
 public class Articles implements Serializable {
 
-    public String id                = "id";
-    public String name                = "name";
-    public String slug                = "slug";
-    public String qnt                = "qnt";
-    public JSONArray images;
-    public String description                = "description";
-    public String price                = "price";
-    public String phone                = "phone";
-    public String email                = "email";
-    public String availability                = "availability";
+    public String id                    = "id";
+    public String name                  = "name";
+    public String slug                  = "slug";
+    public String qnt                   = "qnt";
+    public String images                ="images";
+    public String description           = "description";
+    public String price                 = "total_cost";
+    public String price2                 = "price";
+    public String phone                 = "phone";
+    public String availability          = "availability";
     public String status                = "status";
-    public String created_at                = "created_at";
-    public String stock                = "stock";
+    public String created_at            = "created_at";
+    public String stock                 = "stock";
+    public String keywords              = "keywords";
+
+    public String user_id               = "user.id";
+    public String user_name             = "user.name";
+    public String email                 = "user.email";
+
+    public String cat_id                = "category.id";
+    public String cat_name              = "category.name";
 
 
-    public JSONArray getImages() {
+
+
+    public String getImages() {
         return images;
     }
 
-    public void setImages(JSONArray images) {
+    public void setImages(String images) {
         this.images = images;
     }
 
@@ -131,6 +141,46 @@ public class Articles implements Serializable {
         this.stock = stock;
     }
 
+
+    public String getKeywords() {
+        return keywords;
+    }
+
+    public void setKeywords(String keywords) {
+        this.keywords = keywords;
+    }
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getUser_name() {
+        return user_name;
+    }
+
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+
+    public String getCat_id() {
+        return cat_id;
+    }
+
+    public void setCat_id(String cat_id) {
+        this.cat_id = cat_id;
+    }
+
+    public String getCat_name() {
+        return cat_name;
+    }
+
+    public void setCat_name(String cat_name) {
+        this.cat_name = cat_name;
+    }
 
     //TODO : METHODS
     public static boolean if_exist_id(Context context, String id2) {

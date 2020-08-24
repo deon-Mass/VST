@@ -58,7 +58,7 @@ public class Adaptor_Categorie extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent i  = new Intent(context, Recherche.class);
-                i.putExtra("TITLE", catname.getText());
+                i.putExtra("TITLE", data.getName());
                 context.startActivity(i);
             }
         });

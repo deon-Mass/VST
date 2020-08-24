@@ -98,5 +98,85 @@
 }
 
 
-I/PRODUCT_GET_ERROR: near "order": syntax error (code 1 SQLITE_ERROR): ,
-while compiling: create table CATEGORIES (id varchar(25) primary key, name varchar(500),slug varchar(500),order varchar(500),created_at varchar(500) )
+
+
+
+
+1
+id	1
+name	"Chemise prêt à porter"
+slug	"chemise-pret-a-porter"
+images	"[\"properties\\/July2020\\/EBt5duo6bTuxbHtdMzYS.jpg\"]"
+description	"Blacnhe"
+price	"10"
+keywords	"chemise Homme"
+phone	"+243824730332"
+website	null
+email	"johnclevernzasi@gmail.com"
+status	"published"
+availability	"available"
+user_id	"1"
+condition_id	"1"
+category_id	"20"
+created_at	"2020-07-28 15:38:58"
+updated_at	"2020-07-28 15:38:58"
+stock	"10"
+tva_status	"0"
+partners_fee_id	"2"
+sumRatings	0
+ratings
+0
+id	1
+rating	"0"
+customer_service_rating	"0"
+quality_rating	"0"
+friendly_rating	"0"
+pricing_rating	"0"
+recommend	"Yes"
+department	"Sales"
+title	"Suprême office"
+body	"hjhghhgjh"
+approved	"1"
+reviewrateable_type	"App\\Property"
+reviewrateable_id	"1"
+author_type	"App\\User"
+author_id	"1"
+created_at	" 31 juillet"
+updated_at	"2020-07-31 21:32:01"
+user
+id	1
+role_id	"1"
+name	"Supreme Shop"
+email	"admin@admin.com"
+avatar	"users/August2020/Wd2grMqpJtUsvSxv5Cdm.jpg"
+email_verified_at	null
+banned_at	null
+settings
+locale	"fr"
+verified	"1"
+verification_token	null
+created_at	"2019-10-22 12:05:08"
+updated_at	"2020-08-08 23:20:59"
+profile_id	"2"
+verified_account	"1"
+category
+id	20
+parent_id	"6"
+order	"5"
+name	"Chauffage, climatisation et air"
+slug	"chauffage-climatisation-et-air"
+created_at	"2020-06-02 00:50:14"
+updated_at	"2020-06-02 00:51:21"
+
+[
+  {
+  "id":2,"commenter_id":"1","commenter_type":"App\\User","guest_name":null,"guest_email":null,"commentable_type":"App\\Post","commentable_id":"1","comment":"coooooooooooooooooooool","approved":true,"child_id":null,"created_at":"2020-08-19 15:10:25","updated_at":"2020-08-19 15:10:25","commenter":{"id":1,"role_id":"1","name":"Supreme Shop","email":"admin@admin.com","avatar":"users\/August2020\/Wd2grMqpJtUsvSxv5Cdm.jpg","email_verified_at":null,"banned_at":null,"settings":{"locale":"fr"},"verified":"1","verification_token":null,"created_at":"2019-10-22 12:05:08","updated_at":"2020-08-08 23:20:59","profile_id":"2","verified_account":"1"},
+  }
+,
+  {
+  "id":3,"commenter_id":"1","commenter_type":"App\\User","guest_name":null,"guest_email":null,"commentable_type":"App\\Post","commentable_id":"1","comment":"j'aime bien l'article","approved":true,"child_id":null,"created_at":"2020-08-19 15:10:54","updated_at":"2020-08-19 15:10:54","commenter":{"id":1,"role_id":"1","name":"Supreme Shop","email":"admin@admin.com","avatar":"users\/August2020\/Wd2grMqpJtUsvSxv5Cdm.jpg","email_verified_at":null,"banned_at":null,"settings":{"locale":"fr"},"verified":"1","verification_token":null,"created_at":"2019-10-22 12:05:08","updated_at":"2020-08-08 23:20:59","profile_id":"2","verified_account":"1"},
+  }
+]
+
+
+{"name":"ff","keyword":"ff","quantity":"333","phone":"22","description":"FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF","website":"SS","email":"FSF","price":"2333","img":"[]","colors":"[]","state":"Neuf, avec étiquette","category":"Appareils photos et camescope"}

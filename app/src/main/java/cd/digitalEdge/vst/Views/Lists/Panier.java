@@ -2,7 +2,6 @@ package cd.digitalEdge.vst.Views.Lists;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +11,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,21 +23,22 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import cd.digitalEdge.vst.Adaptors.Adaptor_Panier;
-import cd.digitalEdge.vst.Controllers.Background.MyServices;
+import cd.digitalEdge.vst.Controllers.Offline.ExecuteUpdate;
 import cd.digitalEdge.vst.Controllers.Offline.SQLite.Sqlite_selects_methods;
 import cd.digitalEdge.vst.MainActivity;
 import cd.digitalEdge.vst.Objects.Articles;
 import cd.digitalEdge.vst.R;
 import cd.digitalEdge.vst.Tools.Constants;
-import cd.digitalEdge.vst.Tools.Preferences;
 import cd.digitalEdge.vst.Tools.Utils;
-import okhttp3.internal.Util;
+import cd.digitalEdge.vst.Views.Blanks.Checkout_command;
 
 public class Panier extends AppCompatActivity {
     Context context = this;
     ListView panier_list;
-    SwipeRefreshLayout swiper;
     TextView textCartItemCount, PT,prodcount;
+    LinearLayout progress_data;
+
+
 
 
     Adaptor_Panier adapter;
@@ -57,9 +59,11 @@ public class Panier extends AppCompatActivity {
 
     private void INIT_COMPONENTS() {
         panier_list = findViewById(R.id.panier_list);
-        swiper = findViewById(R.id.swiper);
         prodcount = findViewById(R.id.prodcount);
+        progress_data = findViewById(R.id.progress_data);
         PT = findViewById(R.id.PT);
+
+        progress_data.setVisibility(View.GONE);
     }
 
 
@@ -126,7 +130,7 @@ public class Panier extends AppCompatActivity {
                     prodcount.setText(String.valueOf(PANIER.size()));
                     int TOT = 0;
                     for (Articles a :PANIER) {
-                        TOT += Integer.parseInt(a.getPrice()) * Integer.parseInt(a.getQnt());
+                        TOT += Float.parseFloat(a.getPrice()) * Float.parseFloat(a.getQnt());
                     }
                     PT.setText(String.valueOf(TOT)+" USD");
                 }
@@ -141,12 +145,31 @@ public class Panier extends AppCompatActivity {
             case android.R.id.home:
                 // API 5+ solution
                 onBackPressed();
-                return true;
+                break;
             case R.id.facturation:
                 Intent i  = new Intent(context, Panier.class);
                 startActivity(i);
                 finish();
-                return true;
+                break;
+            case R.id.commander:
+                getdatas();
+                if (PANIER.size() < 1 || PANIER.isEmpty()){
+                    Toast.makeText(context, "Le panier est vide, veuillez ajouter des aricles dans le papnier ", Toast.LENGTH_LONG).show();
+                }else{
+                    Intent ii  = new Intent(context, Checkout_command.class);
+                    startActivity(ii);
+                    finish();
+                }
+
+                break;
+            case R.id.refresh:
+                getdatas();
+                break;
+            case R.id.deleteAll:
+                if (ExecuteUpdate.Truncat(context, Constants.ARTICLE) == 1) Toast.makeText(context, "Panier vidé", Toast.LENGTH_SHORT).show();
+                else Toast.makeText(context, "Panier Non vidé", Toast.LENGTH_SHORT).show();
+                getdatas();
+                break;
         }
 
         return true;
@@ -155,12 +178,6 @@ public class Panier extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        swiper.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                getdatas();
-            }
-        });
 
     }
 
@@ -173,18 +190,19 @@ public class Panier extends AppCompatActivity {
     }
 
     public void getdatas(){
-        swiper.setRefreshing(true);
+        Animation from_right = AnimationUtils.loadAnimation(context, R.anim.m_fromright);
+        Animation to_right = AnimationUtils.loadAnimation(context, R.anim.m_toleft);
+        progress_data.startAnimation(from_right);
+        progress_data.setVisibility(View.VISIBLE);
         PANIER = Sqlite_selects_methods.getall_Articles(context);
         if ( null == PANIER || PANIER.isEmpty() ){
             PANIER = new ArrayList<>();
             Log.e("DATA", "DATAS "+PANIER.size());
-        }else{
-            adapter = new Adaptor_Panier(context, PANIER);
-            //adapter.refreshEvents(PANIER);
-            panier_list.setAdapter(adapter);
-            swiper.setRefreshing(false);
-
         }
+        adapter = new Adaptor_Panier(context, PANIER);
+        panier_list.setAdapter(adapter);
+        progress_data.startAnimation(to_right);
+        progress_data.setVisibility(View.GONE);
     }
 
 }

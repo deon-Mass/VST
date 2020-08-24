@@ -3,16 +3,18 @@
     package="cd.digitalEdge.vst">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission-sdk-23 android:name="android.permission.UPDATE_DEVICE_STATS"/>
 
     <application
         android:name="androidx.multidex.MultiDexApplication"
@@ -24,7 +26,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Views.Contacts"></activity>
+        <activity android:name=".Views.Blanks.Checkout_command"></activity>
+        <activity android:name=".Views.Lists.Wallet" />
+        <activity android:name=".Views.Lists.Chats" />
+        <activity android:name=".Views.Lists.Messages" />
+        <activity android:name=".Views.Lists.Favoris" />
+        <activity android:name=".Views.Lists.Commandes" />
+        <activity android:name=".Views.Lists.Biens" />
+        <activity android:name=".Views.Diapo.IntroActivity" />
+        <activity android:name=".Views.About_app" />
+        <activity android:name=".Views.Lists.Blog" />
+        <activity android:name=".Views.Blanks.Contacts" />
 
         <uses-library
             android:name="org.apache.http.legacy"
@@ -39,7 +51,10 @@
         <activity android:name=".Views.Signin.Login" />
         <activity android:name=".Views.Lists.Details_Article" />
         <activity android:name=".Views.Blanks.Add_vente" />
-        <activity android:name=".Views.Blanks.Add_client" />
+        <activity android:name=".Views.Blanks.Add_product" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -49,7 +64,6 @@
         </activity>
 
         <service android:name=".Controllers.Background.MyServices" />
-
     </application>
 
 </manifest>

@@ -13,12 +13,12 @@ public class ExecuteUpdate {
             long ret = db.insert(table_name,null, values);
             db.close();
             mybase.close();
-            Log.i("INSERT_DONE", String.valueOf(ret));
+            ////Log.i("INSERT_DONE", String.valueOf(ret));
 
             return 1;
         }catch (Exception e){
             e.printStackTrace();
-            Log.e("INSERT_FAILED", e.toString());
+            ////Log.e("INSERT_FAILED", e.toString());
             return 0;
         }
 
@@ -38,11 +38,11 @@ public class ExecuteUpdate {
             db.execSQL("UPDATE "+table_name+" SET "+Editcolumn+" = '"+value+"' WHERE "+colonne_id+" = "+id+";");
             db.close();
             mybase.close();
-            Log.i("UPDATE_DONE", "PASSED");
+            //Log.i("UPDATE_DONE", "PASSED");
             return 1;
         }catch (Exception e){
             e.printStackTrace();
-            Log.e("UPDATE_ERROR", e.toString());
+            //Log.e("UPDATE_ERROR", e.toString());
             return 0;
         }
 
@@ -56,11 +56,11 @@ public class ExecuteUpdate {
             db.execSQL("DELETE FROM "+table_name+" WHERE "+colonne_id+" = "+id+";");
             db.close();
             mybase.close();
-            Log.i("DELETED", "PASSED");
+            //Log.i("DELETED", "PASSED");
             return 1;
         }catch (Exception e){
             e.printStackTrace();
-            Log.e("DELETE_ERROR", e.toString());
+            //Log.e("DELETE_ERROR", e.toString());
             return 0;
         }
 
@@ -74,11 +74,11 @@ public class ExecuteUpdate {
             db.execSQL("DELETE FROM "+table_name+" ;");
             db.close();
             mybase.close();
-            Log.i("TRUNCATED", "PASSED");
+            //Log.i("TRUNCATED", "PASSED");
             return 1;
         }catch (Exception e){
             e.printStackTrace();
-            Log.e("TRUNCAT_ERROR", e.toString());
+            //Log.e("TRUNCAT_ERROR", e.toString());
             return 0;
         }
 

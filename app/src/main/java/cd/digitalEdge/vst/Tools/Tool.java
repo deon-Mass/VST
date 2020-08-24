@@ -151,7 +151,7 @@ public class Tool {
             ((B) Ion.with(context).load(url)).withBitmap().asBitmap().setCallback(new FutureCallback<Bitmap>() {
                 public void onCompleted(Exception e, Bitmap bitmap) {
                     if (bitmap == null) {
-                        imageView.setImageResource(R.drawable.avatar);
+                        imageView.setImageResource(R.drawable.unknow);
                         return;
                     }
                     Bitmap circleBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Config.ARGB_8888);
@@ -206,7 +206,8 @@ public class Tool {
     }
 
     public static void Dialog(Context context, String title, String mesg) {
-        new Builder(context).setTitle((CharSequence) title).setMessage((CharSequence) mesg).setNegativeButton((CharSequence) "D'accord", (OnClickListener) new OnClickListener() {
+        new Builder(context).setTitle((CharSequence) title).setMessage((CharSequence) mesg)
+                .setNegativeButton((CharSequence) "D'accord", (OnClickListener) new OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
             }

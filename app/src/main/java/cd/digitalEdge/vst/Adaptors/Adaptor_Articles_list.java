@@ -2,19 +2,10 @@ package cd.digitalEdge.vst.Adaptors;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.PopupMenu;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Random;
-
-import cd.digitalEdge.vst.Objects.Products;
 import cd.digitalEdge.vst.R;
 
 public class Adaptor_Articles_list extends BaseAdapter {
@@ -38,7 +29,7 @@ public class Adaptor_Articles_list extends BaseAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        View convertView2 = LayoutInflater.from(this.context).inflate(R.layout.model_articles_list, null);
+        View convertView2 = LayoutInflater.from(this.context).inflate(R.layout.model_blog_item, null);
         return convertView2;
     }
 }

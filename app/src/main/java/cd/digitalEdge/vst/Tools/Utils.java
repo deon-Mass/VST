@@ -1,9 +1,11 @@
 package cd.digitalEdge.vst.Tools;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.view.Menu;
@@ -24,12 +27,19 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.androidnetworking.interfaces.StringRequestListener;
+import com.androidnetworking.model.Progress;
 import com.anychart.core.Text;
 import com.google.android.material.snackbar.Snackbar;
+import com.koushikdutta.async.http.body.MultipartFormDataBody;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -37,11 +47,13 @@ import java.util.TimerTask;
 import cd.digitalEdge.vst.Controllers.Config;
 import cd.digitalEdge.vst.Controllers.Config_preferences;
 import cd.digitalEdge.vst.Controllers.Offline.SQLite.Sqlite_selects_methods;
+import cd.digitalEdge.vst.Controllers.Online.Updates;
 import cd.digitalEdge.vst.MainActivity;
 import cd.digitalEdge.vst.Objects.Articles;
 import cd.digitalEdge.vst.Objects.Users;
 import cd.digitalEdge.vst.R;
 import it.sephiroth.android.library.bottomnavigation.MenuParser;
+import okhttp3.internal.http.HttpHeaders;
 
 
 public class Utils {
@@ -171,7 +183,7 @@ public class Utils {
     }
 
     public void sendNote(Context context,String property_id,String body,String recommanded,String note ) {
-        Log.e("RATING_PARAMS ", property_id+" "+ body+" "+ recommanded+" "+ note );
+        //Log.e("RATING_PARAMS ", property_id+" "+ body+" "+ recommanded+" "+ note );
         AndroidNetworking
                 .post(Config.GET_PRODUCT_NOTE)
                 .addBodyParameter("body", body)
@@ -185,14 +197,40 @@ public class Utils {
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
-                        Log.e("RATING_ERR ",response);
+                        //Log.e("RATING_ERR ",response);
                     }
                     @Override
                     public void onError(ANError anError) {
-                        Log.e("RATING_ERR ",anError.getMessage());
+                        //Log.e("RATING_ERR ",anError.getMessage());
                     }
                 });
     }
 
+
+    public void SaveToFavoris(Context context,String bienId ) {
+        ProgressDialog p = new ProgressDialog(context);
+        p.setTitle("");
+        p.setMessage("Encours...");
+        p.show();
+        Log.e("FAVORISXXXX ", Config.SET_FAVORI.concat(Preferences.getCurrentUser(context).getId() +"/"+bienId));
+        AndroidNetworking
+                .post(Config.SET_FAVORI.concat(Preferences.getCurrentUser(context).getId() +"/"+bienId))
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsString(new StringRequestListener() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
+                        Log.e("RATING_ERR ",response);
+                        p.dismiss();
+                    }
+                    @Override
+                    public void onError(ANError anError) {
+                        Log.e("RATING_ERR ",anError.getMessage());
+                        p.dismiss();
+                    }
+
+                });
+    }
 
 }

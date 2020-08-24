@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".Views.Lists.Wallet">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font6"
+                    android:gravity="start"
+                    android:text="Mes gains"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="@color/dark"
+                    android:textSize="17dp"
+                    />
+                <ListView
+                    android:id="@+id/list_gain"
+                    android:divider="@android:color/transparent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/font6"
+                    android:gravity="start"
+                    android:text="Mes paiements"
+                    android:layout_marginLeft="16dp"
+                    android:textColor="@color/dark"
+                    android:textSize="17dp"
+                    />
+                <ListView
+                    android:id="@+id/list_paiement"
+                    android:divider="@android:color/transparent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:elevation="10dp"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/progress_data"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/corner_left_radius_orange"
+            android:layout_marginLeft="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="15dp"
+            android:gravity="center_vertical">
+
+            <ProgressBar
+                android:indeterminateTint="@color/white"
+                android:layout_width="30dp"
+                android:layout_height="30dp"/>
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/font6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Loading data ..."/>
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

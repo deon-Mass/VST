@@ -2,6 +2,10 @@ package cd.digitalEdge.vst.Adaptors;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -10,16 +14,22 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.cardview.widget.CardView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.koushikdutta.ion.Ion;
 
+import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 
+import cd.digitalEdge.vst.Controllers.Config;
 import cd.digitalEdge.vst.Controllers.Offline.SQLite.Sqlite_updates_methods;
 import cd.digitalEdge.vst.Objects.Articles;
 import cd.digitalEdge.vst.Objects.Products;
@@ -58,14 +68,26 @@ public class Adaptor_recherche_list extends BaseAdapter {
         TextView price = convertView2.findViewById(R.id.price);
         ImageView more = convertView2.findViewById(R.id.more);
         ImageView like = convertView2.findViewById(R.id.like);
+        ImageView img = convertView2.findViewById(R.id.img);
+        ProgressBar progress = convertView2.findViewById(R.id.progress);
         FloatingActionButton addToCard = convertView2.findViewById(R.id.addToCard);
+        progress.setVisibility(View.GONE);
         final int[] turn = {0};
 
         Articles data = DATAS.get(position);
 
-
         name.setText(data.getName());
         price.setText(data.getPrice().concat(" USD"));
+        String a =data.getImages().substring(1, data.getImages().length()-1);
+        String[] imgs = a.split(",");
+        String url = Config.ROOT_img.concat(imgs[0].substring(1,imgs[0].length()-1));
+        //Log.e("TAG_IMAGE", url);
+        loadImageBitmap(img, url, progress);
+        /*Glide.with(context)
+                .load(Uri.parse(url))
+                .centerCrop()
+                .placeholder(R.drawable.unknow)
+                .into(img);*/
 
         CARD.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,17 +130,17 @@ public class Adaptor_recherche_list extends BaseAdapter {
                 popupMenu.getMenu().add("Ajouter aux favoris").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
+                        new Utils().SaveToFavoris(context, data.getId());
                         return false;
                     }
                 });
-                popupMenu.getMenu().add("Noter le produit").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                popupMenu.getMenu().add("Ajouter un avis").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
                         new Utils().Noter_article(context, data.getId());
                         return false;
                     }
                 });
-
                 popupMenu.show();
             }
         });
@@ -134,4 +156,35 @@ public class Adaptor_recherche_list extends BaseAdapter {
         else if(response == 2) Toast.makeText(context, "L'article se trouve déjà dans votre panier", Toast.LENGTH_SHORT).show();
         else Toast.makeText(context, "Error while adding", Toast.LENGTH_SHORT).show();
     }
+
+    public static void loadImageBitmap(ImageView img, String path, ProgressBar progress){
+        new AsyncTask() {
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                progress.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            protected Bitmap doInBackground(Object[] objects) {
+                Bitmap bmp = null;
+                try {
+                    //URL url = new URL("https://lesupreme.shop/storage/users/November2019/MgMgAthaK3NIDNomVAxM.jpg");
+                    URL url = new URL(path);
+                    bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return bmp;
+            }
+
+            @Override
+            protected void onPostExecute(Object o) {
+                super.onPostExecute(o);
+                img.setImageBitmap((Bitmap) o);
+                progress.setVisibility(View.GONE);
+            }
+        }.execute();
+    }
+
 }

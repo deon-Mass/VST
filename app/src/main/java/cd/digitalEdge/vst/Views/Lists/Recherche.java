@@ -10,6 +10,8 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -38,11 +40,13 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
+import com.kosalgeek.android.caching.FileCacher;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -68,18 +72,21 @@ public class Recherche extends AppCompatActivity {
     MainActivity MAIN = new MainActivity();
 
     GridView articles_list;
+    ProgressBar progressbar;
+
     SwipeRefreshLayout swiper;
     SearchView SEARCH;
     LinearLayout progress_data, error404;
-    ProgressBar progressbar;
 
     int turn = 0;
+    boolean Connected = true;
     TextView textCartItemCount, CATEGORIE,BTN_search;
     public Handler mHandler = new Handler();
     Timer mTimer = null;
 
     ArrayList<Articles> DATAS = new ArrayList<>();
     ArrayList<Articles> DATAS_SEARCHED = new ArrayList<>();
+    FileCacher<ArrayList<Articles>> DATAS_CACHED = new FileCacher<>(context, Constants.FILE_PRODUCTS);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,24 +96,35 @@ public class Recherche extends AppCompatActivity {
         AndroidNetworking.initialize(getApplicationContext());
 
         INIT_COMPONENT();
-        Loadprod();
+        ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = manager.getActiveNetworkInfo();
+        if (info != null && info.isConnected()) {
+            Connected = true;
+        }else{
+            Connected = false;
+        }
 
         if (getIntent().hasExtra("TITLE")) {
             String from = getIntent().getExtras().getString("TITLE");
+            //Log.e("TITLEEEEEEE", from);
             if (from.equals("V")) SEARCH_INPUT = "Vêtement";
-            if (from.equals("A")) SEARCH_INPUT = "Aliments";
-            if (from.equals("C")) SEARCH_INPUT = "Chaussures";
-            getResearchedProd();
+            else if (from.equals("A")) SEARCH_INPUT = "Aliments";
+            else if (from.equals("C")) SEARCH_INPUT = "Chaussures";
+            else SEARCH_INPUT = from;
+            if (Connected == true)getResearchedProd();
+            else LoadCache();
         }
         else if(getIntent().hasExtra("SEARCH_INPUT")) {
             SEARCH_INPUT = getIntent().getExtras().getString("SEARCH_INPUT");
-            getResearchedProd();
+            if (Connected == true)getResearchedProd();
+            else LoadCache();
         }else{
             SEARCH_INPUT = "Suprême store";
-            Loadprod();
+            if (Connected == true) Loadprod();
+            else LoadCache();
         }
-        getSupportActionBar().setTitle(SEARCH_INPUT);
 
+        getSupportActionBar().setTitle(SEARCH_INPUT);
 
     }
 
@@ -146,7 +164,7 @@ public class Recherche extends AppCompatActivity {
             public void onScrollStateChanged(AbsListView view, int scrollState) {
                 if (
                         scrollState == AbsListView.OnScrollListener.SCROLL_STATE_IDLE &&
-                        (articles_list.getLastVisiblePosition() ) >= adapter.getCount()-1
+                                (articles_list.getLastVisiblePosition() ) >= adapter.getCount()-1
                 ){
                     Animation from_right = AnimationUtils.loadAnimation(context, R.anim.m_fromright);
                     Animation to_right = AnimationUtils.loadAnimation(context, R.anim.m_toleft);
@@ -195,7 +213,9 @@ public class Recherche extends AppCompatActivity {
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                return false;
+                SEARCH_INPUT = query;
+                getResearchedProd();
+                return true;
             }
 
             @Override
@@ -237,7 +257,7 @@ public class Recherche extends AppCompatActivity {
         public void run() {
             mHandler.post(new Runnable() {
                 public void run() {
-                    //Log.e("PANIER_SERVICES", "je tourne bien");
+                    ////Log.e("PANIER_SERVICES", "je tourne bien");
                     new MyServices().Check_Panier(context);
                     if (Preferences.getUserPreferences(context, Constants.PANIER_COUNT) == null || Preferences.getUserPreferences(context, Constants.PANIER_COUNT).equals("")){
                         Utils.Setting_badge("0",textCartItemCount);
@@ -272,7 +292,6 @@ public class Recherche extends AppCompatActivity {
     // TODO METHOD
     private void getResearchedProd(){
         //Log.i("PRODUCT_DATAS ",Config.GET_PRODUCTS);
-
         progress_data.setVisibility(View.VISIBLE);
         error404.setVisibility(View.GONE);
         DATAS.clear();
@@ -280,15 +299,13 @@ public class Recherche extends AppCompatActivity {
                 .post(Config.GET_PRODUCT_SEARCH)
                 .addBodyParameter("query", SEARCH_INPUT)
                 .setPriority(Priority.LOW)
-                .getResponseOnlyIfCached()
-                //.setMaxAgeCacheControl()
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
                             JSONArray ar = response.getJSONArray("results");
-                            //Log.e("PRODUCT_DATAS RR ", ar.toString());
+                            ////Log.e("PRODUCT_DATAS RR ", ar.toString());
 
                             for (int i = 0; i < ar.length(); i++) {
                                 JSONObject jsonObject = ar.getJSONObject(i);
@@ -296,17 +313,26 @@ public class Recherche extends AppCompatActivity {
                                 p.setId(jsonObject.getString(new Articles().id));
                                 p.setName(jsonObject.getString(new Articles().name));
                                 p.setSlug(jsonObject.getString(new Articles().slug));
-                                //p.setImages(jsonObject.getJSONArray("images"));
+                                p.setImages(jsonObject.getString(new Articles().images));
                                 p.setDescription(jsonObject.getString(new Articles().description));
                                 p.setPrice(jsonObject.getString(new Articles().price));
                                 p.setStock(jsonObject.getString(new Articles().stock));
                                 p.setAvailability(jsonObject.getString(new Articles().availability));
+                                p.setKeywords(jsonObject.getString(new Articles().keywords));
+                                p.setUser_id(jsonObject.getString(new Articles().user_id));
+                                p.setUser_name(jsonObject.getString(new Articles().user_name));
+                                p.setEmail(jsonObject.getString(new Articles().email));
+                                p.setCat_id(jsonObject.getString(new Articles().cat_id));
+                                p.setCat_name(jsonObject.getString(new Articles().cat_name));
                                 DATAS.add(p);
+
                             }
 
-                            if (ar.length()<1){
+                            DATAS_CACHED.writeCache(DATAS);
+
+                            if (DATAS.size()<1){
                                 Toast.makeText(context, "Empy", Toast.LENGTH_SHORT).show();
-                                //error404.setVisibility(View.VISIBLE);
+                                error404.setVisibility(View.VISIBLE);
                             }else{
                                 adapter = new Adaptor_recherche_list(context, DATAS);
                                 articles_list.setAdapter(adapter);
@@ -314,22 +340,25 @@ public class Recherche extends AppCompatActivity {
                             }
                             progress_data.setVisibility(View.GONE);
 
-                        } catch (JSONException e) {
-                            Log.e("PRODUCT_DATAS--XX ",e.getMessage());
+                        } catch (Exception e) {
+                            //Log.e("PRODUCT_DATAS--XX ",e.getMessage());
                             //error404.setVisibility(View.VISIBLE);
+                            LoadCache();
                         }
                     }
 
                     @Override
                     public void onError(ANError anError) {
                         progress_data.setVisibility(View.GONE);
-                        Log.e("PRODUCT_DATAS ",anError.getMessage());
-                        error404.setVisibility(View.VISIBLE);
+                        //Log.e("PRODUCT_DATAS ",anError.getMessage());
+                        //error404.setVisibility(View.VISIBLE);
+                        LoadCache();
                     }
                 });
     }
 
     private void Loadprod(){
+        LoadCache();
         progress_data.setVisibility(View.VISIBLE);
         error404.setVisibility(View.GONE);
         DATAS.clear();
@@ -342,7 +371,7 @@ public class Recherche extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             JSONArray ar = response.getJSONArray("products");
-                            Log.e("PRODUCT_DATAS RR ", ar.toString());
+                            //Log.e("PRODUCT_DATAS RR ", ar.toString());
 
                             for (int i = 0; i < ar.length(); i++) {
                                 JSONObject jsonObject = ar.getJSONObject(i);
@@ -350,38 +379,56 @@ public class Recherche extends AppCompatActivity {
                                 p.setId(jsonObject.getString(new Articles().id));
                                 p.setName(jsonObject.getString(new Articles().name));
                                 p.setSlug(jsonObject.getString(new Articles().slug));
-                                //p.setImages(jsonObject.getJSONArray("images"));
+                                p.setImages(jsonObject.getString(new Articles().images));
                                 p.setDescription(jsonObject.getString(new Articles().description));
                                 p.setPrice(jsonObject.getString(new Articles().price));
                                 p.setStock(jsonObject.getString(new Articles().stock));
                                 p.setAvailability(jsonObject.getString(new Articles().availability));
                                 DATAS.add(p);
                             }
-                            if (ar.length()<1){
+                            DATAS_CACHED.writeCache(DATAS);
+                            if (DATAS.size()<1){
                                 Toast.makeText(context, "Empy", Toast.LENGTH_SHORT).show();
-                                error404.setVisibility(View.VISIBLE);
+                                //error404.setVisibility(View.VISIBLE);
                             }else{
                                 adapter = new Adaptor_recherche_list(context, DATAS);
                                 articles_list.setAdapter(adapter);
-                                error404.setVisibility(View.GONE);
+                                //error404.setVisibility(View.GONE);
                             }
                             progress_data.setVisibility(View.GONE);
 
-                        } catch (JSONException e) {
-                            Log.e("PRODUCT_DATAS--XX ",e.getMessage());
-                            error404.setVisibility(View.VISIBLE);
+                        } catch (Exception e) {
+                            //Log.e("PRODUCT_DATAS--XX ",e.getMessage());
+                            //error404.setVisibility(View.VISIBLE);
                         }
                     }
 
                     @Override
                     public void onError(ANError anError) {
                         progress_data.setVisibility(View.GONE);
-                        Log.e("PRODUCT_DATAS ",anError.getMessage());
+                        //Log.e("PRODUCT_DATAS ",anError.getMessage());
                         error404.setVisibility(View.VISIBLE);
                     }
                 });
     }
 
+    private void LoadCache(){
+        progress_data.setVisibility(View.VISIBLE);
+        try {
+            if (DATAS_CACHED.getSize()<1){
+                Toast.makeText(context, "Empy", Toast.LENGTH_SHORT).show();
+                error404.setVisibility(View.VISIBLE);
+            }else{
+                adapter = new Adaptor_recherche_list(context, DATAS_CACHED.readCache());
+                articles_list.setAdapter(adapter);
+                error404.setVisibility(View.GONE);
+            }
+            progress_data.setVisibility(View.GONE);
+            ////Log.e("CACHED_DATA", String.valueOf(DATAS_CACHED.readCache().size()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }

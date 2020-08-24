@@ -33,6 +33,8 @@ import cd.digitalEdge.vst.Controllers.Offline.SQLite.Sqlite_selects_methods;
 import cd.digitalEdge.vst.Controllers.Offline.SQLite.Sqlite_updates_methods;
 import cd.digitalEdge.vst.Objects.Articles;
 import cd.digitalEdge.vst.Objects.Categories;
+import cd.digitalEdge.vst.Objects.Colors;
+import cd.digitalEdge.vst.Objects.Etats;
 import cd.digitalEdge.vst.Objects.Products;
 import cd.digitalEdge.vst.Tools.Constants;
 import cd.digitalEdge.vst.Tools.Preferences;
@@ -83,7 +85,7 @@ public class MyServices extends Service {
         public void run() {
             mHandler.post(new Runnable() {
                 public void run() {
-                    Log.e("MYSERVICE", "je tourne bien");
+                    ////Log.e("MYSERVICE", "je tourne bien");
                     Check_Panier(context);
                 }
             });
@@ -101,8 +103,10 @@ public class MyServices extends Service {
         public void run() {
             mHandler.post(new Runnable() {
                 public void run() {
-                    Log.e("MYSERVICE_CAT", "je tourne bien");
+                    ////Log.e("MYSERVICE_CAT", "je tourne bien");
                     Load_cat(context);
+                    Load_color(context);
+                    Load_etat(context);
                 }
             });
         }
@@ -113,7 +117,7 @@ public class MyServices extends Service {
         PANIER = Sqlite_selects_methods.getall_Articles(context);
         if ( null == PANIER || PANIER.isEmpty() ){
             PANIER = new ArrayList<>();
-            //Log.e("DATA", "DATAS "+PANIER.size());
+            //////Log.e("DATA", "DATAS "+PANIER.size());
         }
         int count = PANIER.size();
         Preferences.setUserPreferences(context, Constants.PANIER_COUNT, String.valueOf(count));
@@ -148,20 +152,107 @@ public class MyServices extends Service {
                             while (it.hasNext()) {
                                 Categories s = (Categories) it.next();
                                 if(Sqlite_updates_methods.insert_CATEGORIE(context, s) == 1){
-                                    Log.e("CATEGORIE_INSERT","INSEERTED");
+                                    ////Log.e("CATEGORIE_INSERT","INSEERTED");
                                 }else if(Sqlite_updates_methods.insert_CATEGORIE(context, s) == 0){
-                                    Log.e("CATEGORIE_INSERT","NOT INSEERTED");
+                                    ////Log.e("CATEGORIE_INSERT","NOT INSEERTED");
                                 }
                             }
 
                         } catch (JSONException e) {
-                            Log.e("PRODUCT_DATAS--XX ",e.getMessage());
+                            ////Log.e("PRODUCT_DATAS--XX ",e.getMessage());
                         }
                     }
 
                     @Override
                     public void onError(ANError anError) {
-                        Log.e("PRODUCT_DATAS ",anError.getMessage());
+                        ////Log.e("PRODUCT_DATAS ",anError.getMessage());
+                    }
+                });
+    }
+
+    public void Load_color(final Context context) {
+        final ArrayList<Colors> DATAS_CAT    = new ArrayList<>();
+        DATAS_CAT.clear();
+        AndroidNetworking
+                .get(Config.GET_COLORS)
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsJSONArray(new JSONArrayRequestListener() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            //Log.i("TAG_COLORS---- ", response.toString());
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject jsonObject = response.getJSONObject(i);
+                                Colors p = new Colors();
+                                p.setId(jsonObject.getString(new Colors().id));
+                                p.setName(jsonObject.getString(new Colors().name));
+                                p.setCodage_rvb(jsonObject.getString(new Colors().codage_rvb));
+                                DATAS_CAT.add(p);
+                            }
+
+                            Iterator it = DATAS_CAT.iterator();
+                            while (it.hasNext()) {
+                                Colors s = (Colors) it.next();
+                                if(Sqlite_updates_methods.insert_COLORS(context, s) == 1){
+                                    ////Log.e("TAG_COLORS","INSEERTED");
+                                }else if(Sqlite_updates_methods.insert_COLORS(context, s) == 0){
+                                    ////Log.e("TAG_COLORS","NOT INSEERTED");
+                                }
+                            }
+
+                        } catch (JSONException e) {
+                            ////Log.e("PRODUCT_DATAS--XX ",e.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+
+                    }
+                });
+    }
+    public void Load_etat(final Context context) {
+        final ArrayList<Etats> DATAS_CAT    = new ArrayList<>();
+        DATAS_CAT.clear();
+        AndroidNetworking
+                .get(Config.GET_ETAT)
+                .setPriority(Priority.HIGH)
+                .build()
+                .getAsJSONArray(new JSONArrayRequestListener() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            //Log.e("PRODUCT_DATAS---- ", response.toString());
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject jsonObject = response.getJSONObject(i);
+                                Etats p = new Etats();
+                                p.setId(jsonObject.getString(new Etats().id));
+                                p.setName(jsonObject.getString(new Etats().name));
+                                p.setDescription(jsonObject.getString(new Etats().description));
+                                DATAS_CAT.add(p);
+                            }
+
+                            Iterator it = DATAS_CAT.iterator();
+                            while (it.hasNext()) {
+                                Etats s = (Etats) it.next();
+                                if(Sqlite_updates_methods.insert_ETAT(context, s) == 1){
+                                    //Log.e("CATEGORIE_INSERT","INSEERTED");
+                                }else if(Sqlite_updates_methods.insert_ETAT(context, s) == 0){
+                                    //Log.e("CATEGORIE_INSERT","NOT INSEERTED");
+                                }else if(Sqlite_updates_methods.insert_ETAT(context, s) == 2){
+                                    //Log.e("TAG_ETAT","EXIST ALREADY");
+                                }
+                            }
+
+                        } catch (JSONException e) {
+                            //Log.e("TAG_ETAT--XX ",e.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+
                     }
                 });
     }

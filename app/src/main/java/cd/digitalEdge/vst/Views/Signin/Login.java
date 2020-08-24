@@ -3,9 +3,14 @@ package cd.digitalEdge.vst.Views.Signin;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -26,6 +31,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.URL;
+
 import cd.digitalEdge.vst.Adaptors.Adaptor_Categorie;
 import cd.digitalEdge.vst.Controllers.Config;
 import cd.digitalEdge.vst.Controllers.Config_preferences;
@@ -34,6 +44,7 @@ import cd.digitalEdge.vst.Objects.Articles;
 import cd.digitalEdge.vst.Objects.Categories;
 import cd.digitalEdge.vst.Objects.Users;
 import cd.digitalEdge.vst.R;
+import cd.digitalEdge.vst.Tools.Constants;
 import cd.digitalEdge.vst.Tools.Preferences;
 import cd.digitalEdge.vst.Tools.Tool;
 import cd.digitalEdge.vst.Tools.Utils;
@@ -62,6 +73,13 @@ public class Login extends AppCompatActivity {
 
         logging_loading.setVisibility(View.GONE);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(context, MainActivity.class);
+        startActivity(i);
+        finish();
     }
 
     @Override
@@ -111,18 +129,9 @@ public class Login extends AppCompatActivity {
                             u.setAvatar(jsonObject.getString(new Users().avatar));
                             u.setRole_id(jsonObject.getString(new Users().role_id));
 
-                            Preferences.SaveCurrentUser(context, u);
-                            if (
-                                    Preferences.getUserPreferences(context, Config_preferences.CURRENT_USER).equals("null") ||
-                                    Preferences.getUserPreferences(context, Config_preferences.CURRENT_USER) == null
-                            ){
-                                Toast.makeText(context, "CURRENT USER NULL", Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-                            Intent i  = new Intent(context, MainActivity.class);
-                            i.putExtra("logged", true);
-                            startActivity(i);
-                            finish();
+                            String path = Config.ROOT_img.concat(u.getAvatar());
+                            Log.e("IMAGE_LOADINGXXXX", path);
+                            loadImageBitmap(u, path);
 
                         } catch (JSONException e) {
                             Log.e("PRODUCT_DATAS--XX ",e.getMessage());
@@ -137,5 +146,75 @@ public class Login extends AppCompatActivity {
                     }
                 });
     }
+
+
+    private String saveToInternalStorage(Bitmap bitmapImage){
+        ContextWrapper cw = new ContextWrapper(getApplicationContext());
+        // path to /data/data/yourapp/app_data/imageDir
+        File directory = cw.getDir("Supreme_profil", Context.MODE_PRIVATE);
+        // Create imageDir
+        File mypath=new File(directory,"profile.jpg");
+
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(mypath);
+            // Use the compress method on the BitMap object to write image to the OutputStream
+            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        Log.e("IMAGE_LOADING", directory.getAbsolutePath().concat("/profile.jpg"));
+        Log.e("IMAGE_LOADING", directory.getAbsoluteFile().getAbsolutePath());
+        return directory.getAbsolutePath().concat("/profile.jpg");
+    }
+    private void loadImageBitmap(Users u, String path){
+        new AsyncTask() {
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                //profil_progress.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            protected Bitmap doInBackground(Object[] objects) {
+                Bitmap bmp = null;
+                try {
+                    //URL url = new URL("https://lesupreme.shop/storage/users/November2019/MgMgAthaK3NIDNomVAxM.jpg");
+                    URL url = new URL(path);
+                    bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return bmp;
+            }
+
+            @Override
+            protected void onPostExecute(Object o) {
+                super.onPostExecute(o);
+                Preferences.setUserPreferences(context, Constants.FILE_PROFILE, saveToInternalStorage((Bitmap) o));
+                Log.e("IMAGE_LOADINGXXXX", Preferences.getUserPreferences(context, Constants.FILE_PROFILE));
+                u.setAvatar(Preferences.getUserPreferences(context, Constants.FILE_PROFILE));
+                Preferences.SaveCurrentUser(context, u);
+                if (
+                        Preferences.getUserPreferences(context, Config_preferences.CURRENT_USER).equals("null") ||
+                        Preferences.getUserPreferences(context, Config_preferences.CURRENT_USER) == null
+                ){
+                    Toast.makeText(context, "CURRENT USER NULL", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                Intent i  = new Intent(context, MainActivity.class);
+                i.putExtra("logged", true);
+                startActivity(i);
+                finish();
+            }
+        }.execute();
+    }
+
 
 }

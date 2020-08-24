@@ -11,6 +11,8 @@ import cd.digitalEdge.vst.Controllers.Offline.ExecuteUpdate;
 import cd.digitalEdge.vst.Objects.Articles;
 import cd.digitalEdge.vst.Objects.Articles;
 import cd.digitalEdge.vst.Objects.Categories;
+import cd.digitalEdge.vst.Objects.Colors;
+import cd.digitalEdge.vst.Objects.Etats;
 import cd.digitalEdge.vst.Objects.Users;
 import cd.digitalEdge.vst.Tools.Constants;
 
@@ -23,7 +25,7 @@ public class Sqlite_updates_methods {
         if ( null == PANIER || PANIER.isEmpty() ){
         }else{
             for (Articles a: PANIER) {
-                Log.e("CARD_EXIST",a.getId()+"  --  "+p.getId());
+                ////Log.e("CARD_EXIST",a.getId()+"  --  "+p.getId());
                 if (a.getId().equals(p.getId())) {
                     response = true;
                     break;
@@ -55,11 +57,11 @@ public class Sqlite_updates_methods {
         boolean response = false;
         PANIER = Sqlite_selects_methods.getall_Categorie(context);
         if ( null == PANIER || PANIER.isEmpty() ){
-            Log.e("CATE_EXIST","EMPTY DATA");
+            ////Log.e("CATE_EXIST","EMPTY DATA");
         }else{
             for (Categories a: PANIER) {
                 if (a.getId().equals(p.getId())) {
-                    //Log.e("CARD_EXIST",a.getId()+"  --  "+p.getId());
+                    ////Log.e("CARD_EXIST",a.getId()+"  --  "+p.getId());
                     response = true;
                     break;
                 }
@@ -78,6 +80,62 @@ public class Sqlite_updates_methods {
             return ExecuteUpdate.insert(context, values, Constants.CATEGORIES);
         }
     }
+    // TODO : SQLITE INSERT Colors
+    public static long insert_COLORS(Context context, Colors p){
+        ArrayList<Colors> PANIER = new ArrayList<>();
+        boolean response = false;
+        PANIER = Sqlite_selects_methods.getall_Colors(context);
+        if ( null == PANIER || PANIER.isEmpty() ){
+            ////Log.e("CATE_EXIST","EMPTY DATA");
+        }else{
+            for (Colors a: PANIER) {
+                if (a.getId().equals(p.getId())) {
+                    ////Log.e("CARD_EXIST",a.getId()+"  --  "+p.getId());
+                    response = true;
+                    break;
+                }
+            }
+        }
+        if (response == true) {
+            //ExecuteUpdate.delete(context, Constants.ARTICLE, new Articles().id, p.getId());
+            return 2;
+        }else{
+            ContentValues values = new ContentValues();
+            values.put(new Colors().id, p.getId() );
+            values.put(new Colors().name, p.getName() );
+            values.put(new Colors().codage_rvb, p.getCodage_rvb() );
+            return ExecuteUpdate.insert(context, values, Constants.COLORS);
+        }
+    }
+    // TODO : SQLITE INSERT etat
+    public static long insert_ETAT(Context context, Etats p){
+        ArrayList<Etats> PANIER = new ArrayList<>();
+        boolean response = false;
+        PANIER = Sqlite_selects_methods.getall_Etat(context);
+        if ( null == PANIER || PANIER.isEmpty() ){
+            //Log.e("TAG_ETAT","EMPTY DATA WHEN GETTING");
+        }else{
+            for (Etats a: PANIER) {
+                if (a.getId().equals(p.getId())) {
+                    //Log.e("TAG_ETAT EXIST",a.getId()+"  --  "+p.getId());
+                    response = true;
+                    break;
+                }
+            }
+        }
+        if (response == true) {
+            //ExecuteUpdate.delete(context, Constants.ARTICLE, new Articles().id, p.getId());
+            return 2;
+        }else{
+            ContentValues values = new ContentValues();
+            values.put(new Etats().id, p.getId() );
+            values.put(new Etats().name, p.getName() );
+            values.put(new Etats().description, p.getDescription() );
+            return ExecuteUpdate.insert(context, values, Constants.ETATS);
+        }
+    }
+
+
     // TODO : SQLITE INSERT User
     public static long insert_USER(Context context, Users p){
         if(ExecuteUpdate.delete(context, Constants.USERS, new Users().id, p.getId()) == 0){

@@ -10,6 +10,8 @@ import cd.digitalEdge.vst.Controllers.Offline.DataBase;
 import cd.digitalEdge.vst.Objects.Articles;
 import cd.digitalEdge.vst.Objects.Articles;
 import cd.digitalEdge.vst.Objects.Categories;
+import cd.digitalEdge.vst.Objects.Colors;
+import cd.digitalEdge.vst.Objects.Etats;
 import cd.digitalEdge.vst.Objects.Users;
 import cd.digitalEdge.vst.Tools.Constants;
 
@@ -27,7 +29,7 @@ public class Sqlite_selects_methods {
                     column.role_id,
                     column.name,
             },null, null, null, null, null);
-            Log.i("USER_GET".toUpperCase(), " Before" + c.getCount());
+            //Log.i("USER_GET".toUpperCase(), " Before" + c.getCount());
             if(c.moveToFirst()){
                 do {
                     Users C = new Users();
@@ -35,20 +37,20 @@ public class Sqlite_selects_methods {
                     C.setRole_id(c.getString(1));
                     ret.add(C);
                 }while (c.moveToNext());
-                Log.i("USER_GET".toUpperCase(), " After " + c.getCount());
+                //Log.i("USER_GET".toUpperCase(), " After " + c.getCount());
                 base.close();
                 mabase.close();
                 return ret;
             }
             else {
-                Log.i("USER_GET2".toUpperCase(), " After2" + c.getCount());
-                Log.i("USER_GET2".toUpperCase(), " no data");
+                //Log.i("USER_GET2".toUpperCase(), " After2" + c.getCount());
+                //Log.i("USER_GET2".toUpperCase(), " no data");
                 base.close();
                 mabase.close();
                 return null;
             }
         }catch (Exception e){
-            Log.i("USER_GET_ERROR".toUpperCase(), e.getMessage());
+            //Log.i("USER_GET_ERROR".toUpperCase(), e.getMessage());
             e.printStackTrace();
             return null;
         }
@@ -73,7 +75,7 @@ public class Sqlite_selects_methods {
                     column.status,
                     column.qnt
             },null, null, null, null, null);
-            Log.i("product_GET".toUpperCase(), " Before" + c.getCount());
+            //Log.i("product_GET".toUpperCase(), " Before" + c.getCount());
             if(c.moveToFirst()){
                 do {
                     Articles C = new Articles();
@@ -89,20 +91,20 @@ public class Sqlite_selects_methods {
                     C.setQnt(c.getString(9));
                     ret.add(C);
                 }while (c.moveToNext());
-                Log.i("product_GET".toUpperCase(), " After " + c.getCount());
+                //Log.i("product_GET".toUpperCase(), " After " + c.getCount());
                 base.close();
                 mabase.close();
                 return ret;
             }
             else {
-                Log.i("product_GET2".toUpperCase(), " After2" + c.getCount());
-                Log.i("product_GET2".toUpperCase(), " no data");
+                //Log.i("product_GET2".toUpperCase(), " After2" + c.getCount());
+                //Log.i("product_GET2".toUpperCase(), " no data");
                 base.close();
                 mabase.close();
                 return null;
             }
         }catch (Exception e){
-            Log.i("product_GET_ERROR".toUpperCase(), e.getMessage());
+            //Log.i("product_GET_ERROR".toUpperCase(), e.getMessage());
             e.printStackTrace();
             return null;
         }
@@ -122,7 +124,7 @@ public class Sqlite_selects_methods {
                     column.slug,
                     column.created_at
             },null, null, null, null, null);
-            Log.i("product_GET".toUpperCase(), " Before" + c.getCount());
+            //Log.i("product_GET".toUpperCase(), " Before" + c.getCount());
             if(c.moveToFirst()){
                 do {
                     Categories C = new Categories();
@@ -134,20 +136,100 @@ public class Sqlite_selects_methods {
 
                     ret.add(C);
                 }while (c.moveToNext());
-                Log.i("product_GET".toUpperCase(), " After " + c.getCount());
+                //Log.i("product_GET".toUpperCase(), " After " + c.getCount());
                 base.close();
                 mabase.close();
                 return ret;
             }
             else {
-                Log.i("Categories_GET2".toUpperCase(), " After2" + c.getCount());
-                Log.i("Categories_GET2".toUpperCase(), " no data");
+                //Log.i("Categories_GET2".toUpperCase(), " After2" + c.getCount());
+                //Log.i("Categories_GET2".toUpperCase(), " no data");
                 base.close();
                 mabase.close();
                 return null;
             }
         }catch (Exception e){
-            Log.i("Categories_GET_ERROR".toUpperCase(), e.getMessage());
+            //Log.i("Categories_GET_ERROR".toUpperCase(), e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    // TODO : GETTING ALL COLORS
+    public static ArrayList<Colors> getall_Colors(Context context){
+        ArrayList<Colors> ret = new ArrayList<>();
+        try{
+            DataBase mabase = new DataBase(context, DataBase.db_name, null, DataBase.db_version);
+            SQLiteDatabase base = mabase.getReadableDatabase();
+            Colors column = new Colors();
+            Cursor c = base.query(Constants.COLORS, new String[]{
+                    column.id,
+                    column.name,
+                    column.codage_rvb
+            },null, null, null, null, null);
+            //Log.i("product_GET".toUpperCase(), " Before" + c.getCount());
+            if(c.moveToFirst()){
+                do {
+                    Colors C = new Colors();
+                    C.setId(c.getString(0));
+                    C.setName(c.getString(1));
+                    C.setCodage_rvb(c.getString(2));
+                    ret.add(C);
+                }while (c.moveToNext());
+                //Log.i("product_GET".toUpperCase(), " After " + c.getCount());
+                base.close();
+                mabase.close();
+                return ret;
+            }
+            else {
+                //Log.i("Categories_GET2".toUpperCase(), " After2" + c.getCount());
+                //Log.i("Categories_GET2".toUpperCase(), " no data");
+                base.close();
+                mabase.close();
+                return null;
+            }
+        }catch (Exception e){
+            //Log.i("Categories_GET_ERROR".toUpperCase(), e.getMessage());
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    // TODO : GETTING ALL ETAT
+    public static ArrayList<Etats> getall_Etat(Context context){
+        ArrayList<Etats> ret = new ArrayList<>();
+        try{
+            DataBase mabase = new DataBase(context, DataBase.db_name, null, DataBase.db_version);
+            SQLiteDatabase base = mabase.getReadableDatabase();
+            Etats column = new Etats();
+            Cursor c = base.query(Constants.ETATS, new String[]{
+                    column.id,
+                    column.name,
+                    column.description
+            },null, null, null, null, null);
+            //Log.i("product_GET".toUpperCase(), " Before" + c.getCount());
+            if(c.moveToFirst()){
+                do {
+                    Etats C = new Etats();
+                    C.setId(c.getString(0));
+                    C.setName(c.getString(1));
+                    C.setDescription(c.getString(2));
+                    ret.add(C);
+                    //Log.e("TAG_ETAT".toUpperCase(), "COUNT" + c.getCount());
+                }while (c.moveToNext());
+                base.close();
+                mabase.close();
+                return ret;
+            }
+            else {
+                //Log.i("Categories_GET2".toUpperCase(), " After2" + c.getCount());
+                //Log.i("Categories_GET2".toUpperCase(), " no data");
+                base.close();
+                mabase.close();
+                return null;
+            }
+        }catch (Exception e){
+            //Log.i("Categories_GET_ERROR".toUpperCase(), e.getMessage());
             e.printStackTrace();
             return null;
         }

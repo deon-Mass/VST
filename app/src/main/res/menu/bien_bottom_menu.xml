@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/tab_actif"
+        android:icon="@android:drawable/presence_online"
+        android:title="Actifs"/>
+    <item
+        android:id="@+id/tab_attente"
+        android:icon="@android:drawable/presence_online"
+        android:title="Attente"/>
+    <item
+        android:id="@+id/tab_vendu"
+        android:icon="@android:drawable/presence_online"
+        android:title="Vendus"/>
+
+</menu>

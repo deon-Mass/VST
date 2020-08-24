@@ -6,14 +6,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    android:background="@color/background2"
+    android:background="@color/white"
     android:id="@+id/activity_news_main_content"
     tools:context=".Views.Lists.Details_Article">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background2"
+        android:background="@color/white"
         android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -40,7 +40,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
-                    android:background="@color/white"
+                    android:background="#5E000000"
                     android:orientation="horizontal">
                     <Button
                         android:id="@+id/backBtn"
@@ -48,10 +48,10 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.2"
                         android:background="@null"
-                        android:drawableRight="@drawable/ic_back_white"
+                        android:drawableRight="@drawable/ic_arrow_previous_white"
                         android:text=""
                         android:textColor="@color/colorAccent"
-                        android:visibility="gone" />
+                        android:visibility="visible" />
                     <LinearLayout
                         android:id="@+id/dots"
                         android:layout_width="wrap_content"
@@ -65,34 +65,21 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="0.2"
                         android:background="@null"
-                        android:drawableLeft="@drawable/ic_back_white"
+                        android:drawableLeft="@drawable/ic_arrow_next_white"
                         android:text=""
-                        android:textColor="@color/white"
-                        android:visibility="gone" />
+                        android:textColor="@color/colorAccent"
+                        android:visibility="visible" />
+                    
                 </LinearLayout>
-
-                <TextView
-                    android:id="@+id/Noter"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="10dp"
-                    android:paddingHorizontal="20dp"
-                    android:paddingVertical="10dp"
-                    android:layout_marginHorizontal="10dp"
-                    android:background="@drawable/corner_green_solid_green"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:drawablePadding="10dp"
-                    android:text="Noter le produit"/>
 
             </RelativeLayout>
 
             <LinearLayout
-                android:overScrollMode="never"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
+                android:gravity="start"
                 android:orientation="vertical"
+                android:overScrollMode="never"
                 android:padding="20dp">
 
                 <TextView
@@ -103,19 +90,28 @@
                     android:gravity="start"
                     android:paddingHorizontal="10dp"
                     android:text="Titre de l'article"
-                    android:textColor="@color/dark"
+                    android:textColor="@color/black"
                     android:textSize="20dp" />
+
+                <RatingBar
+                    style="?ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="6dp"
+                    android:layout_marginBottom="5dp"
+                    android:numStars="5"
+                    android:paddingHorizontal="0dp" />
 
                 <TextView
                     android:id="@+id/slut"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/font5"
+                    android:fontFamily="@font/font3"
                     android:gravity="start"
                     android:paddingHorizontal="10dp"
                     android:text="@string/lorem_short"
-                    android:textColor="@color/gris_dark"
-                    android:textSize="13dp" />
+                    android:textColor="@color/dark"
+                    android:textSize="15dp" />
 
 
                 <LinearLayout
@@ -131,9 +127,41 @@
                         android:fontFamily="@font/font3"
                         android:gravity="start"
                         android:paddingHorizontal="10dp"
-                        android:text="Déscription"
+                        android:text="PRIX TTC "
                         android:textColor="@color/dark"
-                        android:textSize="15dp" />
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font3"
+                        android:gravity="start"
+                        android:paddingHorizontal="10dp"
+                        android:text="500 USD"
+                        android:textColor="@color/dark"
+                        android:textSize="18dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="0dp"
+                    android:paddingVertical="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font3"
+                        android:gravity="start"
+                        android:paddingHorizontal="10dp"
+                        android:text="DESCRIPTION"
+                        android:textColor="@color/dark"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/description"
@@ -143,7 +171,7 @@
                         android:gravity="start"
                         android:paddingHorizontal="10dp"
                         android:text="@string/lorem_semin_long"
-                        android:textColor="@color/gris_dark"
+                        android:textColor="@color/dark"
                         android:textSize="16dp" />
 
                 </LinearLayout>
@@ -154,9 +182,10 @@
                     android:fontFamily="@font/font3"
                     android:gravity="start"
                     android:paddingHorizontal="10dp"
-                    android:text="Montant et disponibilité"
+                    android:text="AUTRE DETAILS"
                     android:textColor="@color/dark"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -174,23 +203,23 @@
                         android:paddingVertical="10dp">
 
                         <TextView
-                            android:id="@+id/price"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/font6"
                             android:gravity="center"
-                            android:text="500 USD"
+                            android:text="Couleurs"
                             android:textColor="@color/dark"
                             android:textSize="16dp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/font5"
+                            android:fontFamily="@font/font3"
                             android:gravity="center"
-                            android:text="PRIX"
-                            android:textColor="@color/gris_dark"
+                            android:text="STOCK"
+                            android:textColor="@color/dark"
                             android:textSize="13dp" />
+
                     </LinearLayout>
 
                     <LinearLayout
@@ -213,7 +242,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/font6"
                             android:gravity="center"
-                            android:text="Disponible"
+                            android:text="Etat"
                             android:textColor="@color/dark"
                             android:textSize="16dp" />
 
@@ -221,10 +250,10 @@
                             android:id="@+id/stock"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/font5"
+                            android:fontFamily="@font/font3"
                             android:gravity="center"
                             android:text="STOCK"
-                            android:textColor="@color/gris_dark"
+                            android:textColor="@color/dark"
                             android:textSize="13dp" />
                     </LinearLayout>
 
@@ -232,7 +261,77 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="0dp"
+                    android:paddingVertical="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/font3"
+                        android:gravity="start"
+                        android:paddingHorizontal="10dp"
+                        android:text="FOURNISSEUR"
+                        android:textColor="@color/dark"
+                        android:textSize="15dp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/unknow" />
+
+                        <LinearLayout
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginHorizontal="10dp"
+                            android:layout_marginVertical="10dp"
+                            android:background="#CDE6E6E6" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/font3"
+                                android:gravity="start"
+                                android:text="Deon massadi"
+                                android:textColor="@color/colorPrimary"
+                                android:textSize="17dp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/font5"
+                                android:gravity="start"
+                                android:text="adminàadmin.com"
+                                android:textColor="@color/gris_dark"
+                                android:textSize="12dp" />
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -268,29 +367,69 @@
 
                     </LinearLayout>
 
+
                     <LinearLayout
-                        android:layout_marginLeft="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="0dp"
                         android:layout_weight="1"
-                        android:background="@drawable/corner_bleu_solid_bleu"
-                        android:gravity="center">
+                        android:gravity="start">
 
                         <TextView
                             android:id="@+id/addtocard"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginHorizontal="10dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="10dp"
+                            android:background="@drawable/corner_bleu_solid_bleu"
                             android:drawableLeft="@drawable/ic_shopping_gris"
-                            android:drawablePadding="10dp"
-                            android:gravity="center"
-                            android:paddingHorizontal="10dp"
+                            android:drawablePadding="5dp"
+                            android:gravity="center_vertical"
+                            android:paddingHorizontal="15dp"
                             android:paddingVertical="10dp"
                             android:text="Ajouter au panier"
                             android:textColor="@color/white" />
+
                     </LinearLayout>
                 </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/addtofavorit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/corner_red_solid_red"
+                        android:drawableLeft="@drawable/ic_favorite"
+                        android:drawablePadding="5dp"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="10dp"
+                        android:text="Ajouter aux favoris"
+                        android:textColor="@color/white" />
+
+                    <TextView
+                        android:id="@+id/Noter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/corner_green_solid_green"
+                        android:drawableLeft="@drawable/ic_commande"
+                        android:drawablePadding="1dp"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="10dp"
+                        android:text="Ajouter un avis"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
 
             </LinearLayout>
 

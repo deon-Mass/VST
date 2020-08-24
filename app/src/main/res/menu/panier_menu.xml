@@ -8,4 +8,20 @@
         app:actionLayout="@layout/custom_action_item_layout_panier"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/refresh"
+        android:title="Actualiser"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/commander"
+        android:title="Commander ce panier"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/deleteAll"
+        android:title="Vider ce panier"
+        app:showAsAction="never" />
+
+
+
 </menu>

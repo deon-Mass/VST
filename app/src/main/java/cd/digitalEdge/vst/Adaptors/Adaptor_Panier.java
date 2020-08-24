@@ -84,8 +84,10 @@ public class Adaptor_Panier extends BaseAdapter {
         Articles data = PANIER.get(position);
 
         name.setText(data.getName());
+        float tot = Float.parseFloat(data.getPrice()) * Float.parseFloat(data.getQnt());
+
         PT.setText(
-                String.valueOf(Integer.parseInt(data.getPrice()) * Integer.parseInt(data.getQnt())) + " USD"
+                tot + " USD"
         );
         descripion.setText(data.getSlug());
         pay_now.setText(data.getQnt());
@@ -98,7 +100,8 @@ public class Adaptor_Panier extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent i  = new Intent(context, Details_Article.class);
-                i.putExtra("source", "P");
+                i.putExtra("Article", data);
+                i.putExtra("source", "Panier");
                 context.startActivity(i);
             }
         });
